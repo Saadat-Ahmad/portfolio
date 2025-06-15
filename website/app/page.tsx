@@ -151,7 +151,7 @@ export default function HomePage() {
       {/* Socials */}
       <section id="socials">
         <h2 className="text-2xl text-accent font-semibold mb-4">Get in touch</h2>
-        <div className="flex gap-6 justify-center items-center md: gap-3">
+        <div className="flex gap-3 text-xs justify-center items-center sm:gap-10 sm:text-base">
           <Link href="https://github.com/Saadat-Ahmad" target="_blank" className="hover:underline">
             GitHub
           </Link>
@@ -164,14 +164,14 @@ export default function HomePage() {
            <Link href="https://instagram.com/saadatahmad_" target="_blank" className="hover:underline">
             Instagram
           </Link>
-          <Button onClick={copyEmail} variant="secondary" className="transition duration-300 ease-in-out hover:scale-110">
+          <Button onClick={copyEmail} variant="secondary" className="transition duration-300 text-xs ease-in-out hover:scale-110 sm:text-base">
             {copied ? (
               <>
-                <Check className="w-4 h-4 mr-2" /> Copied!
+                <Check className="w-4 h-4 mr-0: sm:w-6 sm:h-6 sm:mr2" /> Copied!
               </>
             ) : (
               <>
-                <Copy className="w-4 h-4 mr-2" /> Copy Email
+                <Copy className="w-4 h-4 mr-0 sm:w-6 sm:h-6 sm:mr2" /> Copy Email
               </>
             )}
           </Button>
