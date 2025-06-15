@@ -26,6 +26,12 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-6">
+          
+          <a href="/cvSaadatAhmad.pdf" download>
+            <button className="text-sm font-medium hover:text-primary transition-colors">
+              Resume
+            </button>
+        </a>
           {navItems.map((item) => (
             <Link
               key={item.name}

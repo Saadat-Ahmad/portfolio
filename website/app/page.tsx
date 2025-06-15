@@ -151,7 +151,7 @@ export default function HomePage() {
       {/* Socials */}
       <section id="socials">
         <h2 className="text-2xl text-accent font-semibold mb-4">Get in touch</h2>
-        <div className="flex gap-6 justify-center items-center">
+        <div className="flex gap-6 justify-center items-center md: gap-3">
           <Link href="https://github.com/Saadat-Ahmad" target="_blank" className="hover:underline">
             GitHub
           </Link>
