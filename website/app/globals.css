@@ -1,26 +1,96 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Custom variant for dark mode */
 
+/* Minimalist Theme Variables */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg:         #ffffff;
+  --color-fg:         #111111;
+  --color-primary:    #1a1a1a;
+  --color-secondary:  #666666;
+  --color-accent:     #df7009;
+  --color-muted:      #f0f0f0;
+
+  --border-radius:    0.5rem;
+  --transition:       all 0.3s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark mode overrides */
+.dark {
+  --color-bg:         #0f0f0f;
+  --color-fg:         #f8f8f8;
+  --color-primary:    #f8f8f8;
+  --color-secondary:  #888888;
+  --color-accent:     #df7009;
+  --color-muted:      #1a1a1a;
+}
+
+/* Global styles using variables */
+:root {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  transition: var(--transition);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  transition: var(--transition);
+  cursor: none !important;
+}
+/* styles/cursor.css or add to your global CSS */
+
+.custom-cursor {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+  
+  /* This creates the inverted color effect */
+  mix-blend-mode: difference;
+  background-color: white;
+  
+  /* Optional: Add a subtle border for better visibility */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  
+  /* Smooth movement - this is key for fluid cursor motion */
+  transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              opacity 2s ease;
+}
+
+/* Optional: Add hover effects for interactive elements */
+.custom-cursor.hover {
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%) scale(2);
+  transition: transform 2s cubic-bezier(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9), 
+              opacity 2s ease-in-out;
+}
+
+/* Ensure the cursor works well on different backgrounds */
+body {
+  cursor: none !important;
+}
+
+/* Override cursor for specific elements if needed */
+a, button, input, textarea, select, image {
+  cursor: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color:var(--color-accent);
 }
