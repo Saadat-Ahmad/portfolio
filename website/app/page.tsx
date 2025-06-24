@@ -31,7 +31,7 @@ export default function HomePage() {
       title: "JannSeva",
       image: "/jannseva.png",
       line: "Providing quick healthcare to rural India in native dialects",
-      description: "JannSeva is a health support platform built for rural India. It uses local dialect of the users' region to respond to users' health-related questions and give health education powered by AI. JannSeva also maintains users' medical history and has users' local weather & pollution data to give region specific replies and insights. It’s safe and secure, with simple phone number login using OTP.",
+      description: "JannSeva is a health support platform built for rural India. It uses the local dialect of the users' region to respond to users' health-related questions and give health education powered by AI. JannSeva also maintains users' medical history and has users' local weather & pollution data to give region specific replies and insights. It’s safe and secure, with simple phone number login using OTP.",
       link: "https://github.com/Saadat-Ahmad/JannSeva",
     },
     {
@@ -47,15 +47,15 @@ export default function HomePage() {
     {
       title: "Intern – AMU Innovation Foundation",
       date: "June 2024 – July 2024",
-      description: "Built geolocation data driven satelite image capturing programs",
+      description: "Built geolocation data-driven satellite image capturing programs",
     },
     {
       title: "Satellite payload designer – SS AMU SAT",
       date: "July 2024 – Present",
-      description: "Implemented the satelite imaging payload on RaspberryPi CM4. Established communication between payload and other satellite subsystems.",
+      description: "Implemented the satellite imaging payload on RaspberryPi CM4. Established communication between payload and other satellite subsystems.",
     },
     {
-      title: "Web-Developer Intern – Nexcope Pvt. Ltd.",
+      title: "Web-Developer Intern – Orbitalink Pvt. Ltd.",
       date: "July 2025 – Present",
       description: "NDA",
     },
