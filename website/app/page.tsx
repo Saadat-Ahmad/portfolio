@@ -57,7 +57,7 @@ export default function HomePage() {
     {
       title: "Web-Development Intern – Orbitalink Pvt. Ltd.",
       date: "May 2025 – July 2025",
-      description: "Built and deployed a CI/CD pipeline with separate workflows for production and development. \nDeveloped various internal APIs, focused on user authentication, session management, admin privilege system, and integrated third party APIs.",
+      description: "Built and deployed a CI/CD pipeline with separate workflows for production and development.", "Developed various internal APIs, focused on user authentication, session management, admin privilege system, and integrated third party APIs.",
     },
     
   ]
