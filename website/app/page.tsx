@@ -82,9 +82,9 @@ export default function HomePage() {
         <div className="space-y-2">
           <h2 className="text-3xl">Hey, its <span className="text-accent">Saadat</span></h2>
           <h3 className="text-xl pt-4.5 mb-0 pb-0">Computer Engineering undergrad <br/></h3>
-          <p className="pt-0 mt-0">@ Aligarh Muslim University</p>
+          <p className="pt-2 mt-0">@ Aligarh Muslim University</p>
           <p className="text-muted-foreground pt-5">
-            Software developer based out of India. <br></br>Building solutions is a surprisingly satisfying experience.
+            Software developer based out of India. 
           </p>
         </div>
       </section>
@@ -98,7 +98,7 @@ export default function HomePage() {
               <span className="absolute left-[-33px] top-1 w-4 h-4 bg-primary rounded-full border-2 border-accent"></span>
               <h3 className="font-semibold">{exp.title}</h3>
               <span className="text-sm text-muted-foreground">{exp.date}</span>
-              <p className="mt-10">{exp.description}</p>
+              <p className="pt-10">{exp.description}</p>
             </div>
           ))}
           </div>
