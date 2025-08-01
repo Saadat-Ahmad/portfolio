@@ -96,7 +96,7 @@ export default function HomePage() {
           {experiences.map((exp, idx) => (
             <div key={idx} className="relative">
               <span className="absolute left-[-33px] top-1 w-4 h-4 bg-primary rounded-full border-2 border-accent"></span>
-              <h3 className="font-semibold">{exp.title}</h3>
+              <h3 className="font-semibold mt-20">{exp.title}</h3>
               <span className="text-sm text-muted-foreground">{exp.date}</span>
               <p>{exp.description}</p>
             </div>
