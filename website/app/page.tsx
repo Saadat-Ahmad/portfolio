@@ -98,7 +98,7 @@ export default function HomePage() {
               <span className="absolute left-[-33px] top-1 w-4 h-4 bg-primary rounded-full border-2 border-accent"></span>
               <h3 className="font-semibold">{exp.title}</h3>
               <span className="text-sm text-muted-foreground">{exp.date}</span>
-              <p className="pt-10">{exp.description}</p>
+              <p className="pt-2">{exp.description}</p>
             </div>
           ))}
           </div>
