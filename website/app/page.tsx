@@ -31,14 +31,14 @@ export default function HomePage() {
       title: "JannSeva",
       image: "/jannseva.png",
       line: "Providing quick healthcare to rural India in native dialects",
-      description: "JannSeva is a health support platform built for rural India. It uses the local dialect of the users' region to respond to users' health-related questions and give health education powered by AI. JannSeva also maintains users' medical history and has users' local weather & pollution data to give region specific replies and insights. It’s safe and secure, with simple phone number login using OTP.",
+      description: "JannSeva is a health support platform built for rural India. It uses the local dialect of the user's region to respond to user's health-related questions and give health education powered by AI. JannSeva also maintains user's medical history and has user's local weather & pollution data to give region specific replies and insights. It is secured with phone number for login using OTP.",
       link: "https://github.com/Saadat-Ahmad/JannSeva",
     },
     {
       title: "EnVision",
       image: "/envision.png",
       line: "Browser Extension for the colorblind people",
-      description: "This web browser extension enhances accessibility for color-blind users by automatically daltonizing website content. Daltonization is a technique that adjusts colors to make them more distinguishable for people with color vision deficiencies. The extension analyzes the colors on any webpage and subtly shifts hues and contrasts to improve clarity without altering the overall design. This ensures a more inclusive and comfortable browsing experience.",
+      description: "This web browser extension enhances accessibility for color-blind users by adjusting colors to make them more distinguishable for people with color vision deficiencies. The extension analyzes the colors on any webpage and subtly shifts hues and contrasts to improve clarity (daltonisation) without altering the overall design. This ensures a more inclusive and comfortable browsing experience.",
       link: "https://github.com/Saadat-Ahmad/envision-chrome-extension",
     }
   ]
@@ -58,6 +58,12 @@ export default function HomePage() {
       title: "Web-Development Intern – Orbitalink Pvt. Ltd.",
       date: "May 2025 – July 2025",
       description: "Built and deployed a CI/CD pipeline with separate workflows for production and development. Developed various internal APIs, focused on user authentication, session management, admin privilege system, and integrated third party APIs.",
+    },
+
+    {
+      title: "Software Developer Intern – telecrm",
+      date: "August 2025 – Present",
+      description: "Developing automated software tests with JasmineJS for behavior-driven testing, PuppeteerJS for browser automation, and Allure for release-level test monitoring.",
     },
     
   ]
@@ -80,11 +86,11 @@ export default function HomePage() {
         />
         </Link>
         <div className="space-y-2">
-          <h2 className="text-3xl">Hey, its <span className="text-accent">Saadat</span></h2>
-          <h3 className="text-xl pt-4.5 mb-0 pb-0">Computer Engineering undergrad <br/></h3>
-          <p className="pt-2 mt-0">@ Aligarh Muslim University</p>
+          <h2 className="text-3xl">Hey! its <span className="text-accent">Saadat.</span></h2>
+          <h3 className="text-xl pt-4.5 mb-0 pb-0">Computer Engineering undergraduate <br/></h3>
+          <a target="_blank" href="https://en.wikipedia.org/wiki/History_of_Aligarh_Muslim_University" className="text-accent mt-0">@ Aligarh Muslim University</a>
           <p className="text-muted-foreground pt-5">
-            Software developer based out of India. 
+            Software Developer Intern <a target="_blank" className="text-accent pt-5" href="https://telecrm.in">@ telecrm</a>
           </p>
         </div>
       </section>
@@ -95,7 +101,7 @@ export default function HomePage() {
         <div className="pl-6 pb-8 space-y-8 border-l-2 border-dotted">
           {experiences.map((exp, idx) => (
             <div key={idx} className="relative">
-              <span className="absolute left-[-33px] top-1 w-4 h-4 bg-primary rounded-full border-2 border-accent"></span>
+              <span className="absolute left-[-33px] top-1 w-4 h-4 bg-accent rounded-full border-2 border-foregound"></span>
               <h3 className="font-semibold">{exp.title}</h3>
               <span className="text-sm text-muted-foreground">{exp.date}</span>
               <p className="pt-2">{exp.description}</p>
@@ -104,7 +110,7 @@ export default function HomePage() {
           </div>
           <div className="pl-6 mt-0 pt-0 space-y-8 border-l-2 border-none">
             <div className="relative">
-              <span className="absolute left-[-33px] top-1 w-4 h-4 bg-primary rounded-full border-2 border-accent"></span>
+              <span className="absolute left-[-33px] top-1 w-4 h-4 bg-accent rounded-full border-2 border-foreground"></span>
               <h3 className="font-semibold">Next Adventure?</h3>
               <span className="text-sm text-muted-foreground">Present – Forseeable Future</span>
               <p>Lets build the future together. <Link href={"https://www.linkedin.com/in/syedsaadatahmad/"} className="inline-flex underline text-accent">Lets get in touch <SquareArrowOutUpRight className="ml-2 w-5 h-5"/></Link></p>
