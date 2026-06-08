@@ -1,11 +1,46 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes"
+import { Fraunces, Space_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import CircularCursor from "@/components/LazyCursor/lazycursot";
+import Cursor from "@/components/site/Cursor";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Syed Saadat Ahmad",
-  description: "Syed Saadat Ahmad is a Software developer based out of Aligarh, India. He has been a part of the SS AMU SAT satellite project where he has been working as a satellite payload designer. He has built geodata based image capturing programs and has worked on the hardware side of things",
+  metadataBase: new URL("https://saadatahmad.com"),
+  title: "Syed Saadat Ahmad · Full-Stack & Systems Engineer",
+  description:
+    "Syed Saadat Ahmad is a full-stack and systems engineer in Aligarh, India, building privacy-first desktop AI at Recklabs, satellite imaging payloads, FastAPI services, and CI/CD infrastructure.",
+  keywords: [
+    "Syed Saadat Ahmad",
+    "Full-Stack Developer",
+    "Next.js",
+    "FastAPI",
+    "Satellite Payload",
+    "Aligarh Muslim University",
+  ],
+  openGraph: {
+    title: "Syed Saadat Ahmad · Full-Stack & Systems Engineer",
+    description:
+      "Full-stack & systems engineer: privacy-first desktop AI, satellite payloads, FastAPI services, CI/CD.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -14,14 +49,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <CircularCursor/>
-          {children}
-        </ThemeProvider>
+    <html
+      lang="en"
+      className={`${fraunces.variable} ${spaceMono.variable} ${inter.variable}`}
+    >
+      <body className="antialiased">
+        <div className="grain" aria-hidden />
+        <Cursor />
+        {children}
       </body>
     </html>
   );
 }
-

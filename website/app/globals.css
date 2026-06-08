@@ -1,96 +1,276 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
-/* Custom variant for dark mode */
+/* ────────────────────────────────────────────────────────────────────────
+   Syed Saadat Ahmad · portfolio
+   Quiet-editorial system: warm paper canvas, ink, orange + sage/brick panels.
+   Light only.
+   ──────────────────────────────────────────────────────────────────────── */
 
-/* Minimalist Theme Variables */
 @theme inline {
-  --color-bg:         #ffffff;
-  --color-fg:         #111111;
-  --color-primary:    #1a1a1a;
-  --color-secondary:  #666666;
-  --color-accent:     #df7009;
-  --color-muted:      #f0f0f0;
-
-  --border-radius:    0.5rem;
-  --transition:       all 0.3s ease;
+  /* Fonts (CSS vars injected by next/font in layout.tsx) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-space-mono), ui-monospace, "SFMono-Regular", monospace;
 }
 
-/* Dark mode overrides */
-.dark {
-  --color-bg:         #0f0f0f;
-  --color-fg:         #f8f8f8;
-  --color-primary:    #f8f8f8;
-  --color-secondary:  #888888;
-  --color-accent:     #df7009;
-  --color-muted:      #1a1a1a;
+@theme {
+  /* Surfaces */
+  --color-paper: #f1e8d5;        /* main canvas */
+  --color-paper-2: #f6efe1;      /* raised card surface */
+  --color-paper-deep: #e7dabf;   /* recessed / inset */
+
+  /* Ink */
+  --color-ink: #221c15;          /* primary text */
+  --color-ink-soft: #6f6353;     /* secondary text */
+  --color-line: #cabd9f;         /* hairline rules */
+
+  /* Accents */
+  --color-orange: #df7009;
+  --color-orange-deep: #b85a05;
+  --color-sage: #6c7a57;         /* muted green panel */
+  --color-brick: #9c4530;        /* brick red panel */
+
+  --radius-card: 2px;
 }
 
-/* Global styles using variables */
+/* ── base ─────────────────────────────────────────────────────────────── */
+
 :root {
-  background-color: var(--color-bg);
-  color: var(--color-fg);
-  transition: var(--transition);
-}
-
-body {
-  font-family: system-ui, sans-serif;
-  background-color: var(--color-bg);
-  color: var(--color-fg);
-  transition: var(--transition);
-  cursor: none !important;
-}
-/* styles/cursor.css or add to your global CSS */
-
-.custom-cursor {
-  position: fixed;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s ease;
-  
-  /* This creates the inverted color effect */
-  mix-blend-mode: difference;
-  background-color: white;
-  
-  /* Optional: Add a subtle border for better visibility */
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  
-  /* Smooth movement - this is key for fluid cursor motion */
-  transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              opacity 2s ease;
-}
-
-/* Optional: Add hover effects for interactive elements */
-.custom-cursor.hover {
-  width: 80px;
-  height: 80px;
-  transform: translate(-50%, -50%) scale(2);
-  transition: transform 2s cubic-bezier(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9), 
-              opacity 2s ease-in-out;
-}
-
-/* Ensure the cursor works well on different backgrounds */
-body {
-  cursor: none !important;
-}
-
-/* Override cursor for specific elements if needed */
-a, button, input, textarea, select, image {
-  cursor: none !important;
+  color-scheme: light;
+  /* Desktop sidebar width; updated by Sidebar.tsx on collapse/expand. Default = collapsed rail. */
+  --sidebar-w: 4rem;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv01";
+}
+
+::selection {
+  background-color: var(--color-orange);
+  color: var(--color-paper);
+}
+
+/* Headlines lean into Fraunces' optical/soft personality */
+.font-serif {
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 30, "WONK" 0;
+  letter-spacing: -0.01em;
+}
+
+/* monospace eyebrow label, e.g. [ 01 · EXPERIENCE ] */
+/* in @layer components so Tailwind color utilities (text-paper, …) can override */
+@layer components {
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+}
+
+/* ── scrollbar ────────────────────────────────────────────────────────── */
 
 ::-webkit-scrollbar {
   width: 10px;
 }
-
+::-webkit-scrollbar-track {
+  background: var(--color-paper-deep);
+}
 ::-webkit-scrollbar-thumb {
-  background-color:var(--color-accent);
+  background-color: var(--color-orange);
+  border: 2px solid var(--color-paper-deep);
+}
+
+/* ── film grain overlay ───────────────────────────────────────────────── */
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── custom cursor (desktop, fine-pointer only) ───────────────────────── */
+
+@media (pointer: fine) {
+  body.has-cursor,
+  body.has-cursor a,
+  body.has-cursor button,
+  body.has-cursor [role="button"] {
+    cursor: none;
+  }
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 70;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.18s ease,
+    height 0.18s ease,
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    opacity 0.2s ease;
+  mix-blend-mode: normal;
+}
+.cursor-ring.is-hover {
+  width: 52px;
+  height: 52px;
+  background-color: color-mix(in srgb, var(--color-orange) 22%, transparent);
+  border-color: var(--color-orange);
+}
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  background-color: var(--color-orange);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 71;
+  transform: translate(-50%, -50%);
+}
+
+/* ── tech-logo mask (monochrome, tints to currentColor) ───────────────── */
+
+.logo-mask {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* ── glitch portrait ──────────────────────────────────────────────────── */
+
+.gp-tear,
+.gp-ascii {
+  opacity: 0;
+  will-change: opacity, transform, clip-path;
+}
+
+.gp-scan {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(20, 16, 12, 0.22) 0,
+    rgba(20, 16, 12, 0.22) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.1;
+  transition: opacity 0.25s ease;
+}
+
+.is-glitching .gp-scan {
+  opacity: 0.45;
+}
+.is-glitching .gp-photo {
+  animation: gp-shake 0.72s steps(3) both;
+}
+.is-glitching .gp-tear {
+  animation: gp-tear 0.72s linear both;
+}
+.is-glitching .gp-ascii {
+  animation: gp-ascii 0.72s linear both;
+}
+.is-glitching .gp-ascii--inv {
+  animation: gp-ascii-inv 0.72s linear both;
+}
+
+/* keep glitching while hovered */
+.is-glitching--loop .gp-photo,
+.is-glitching--loop .gp-tear,
+.is-glitching--loop .gp-ascii,
+.is-glitching--loop .gp-ascii--inv {
+  animation-iteration-count: infinite;
+}
+
+@keyframes gp-shake {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  20% { transform: translate3d(-3px, 1px, 0); }
+  40% { transform: translate3d(3px, -2px, 0); }
+  60% { transform: translate3d(-2px, 0, 0); }
+  80% { transform: translate3d(2px, 1px, 0); }
+}
+
+@keyframes gp-tear {
+  0% { opacity: 0; }
+  10% { opacity: 0.9; clip-path: inset(12% 0 62% 0); transform: translateX(-11px); }
+  22% { opacity: 0.7; clip-path: inset(56% 0 22% 0); transform: translateX(13px); }
+  34% { opacity: 0; }
+  50% { opacity: 0.85; clip-path: inset(33% 0 44% 0); transform: translateX(-9px); }
+  60% { opacity: 0; }
+  74% { opacity: 0.6; clip-path: inset(72% 0 8% 0); transform: translateX(9px); }
+  88% { opacity: 0; }
+  100% { opacity: 0; clip-path: inset(0 0 0 0); transform: translateX(0); }
+}
+
+@keyframes gp-ascii {
+  0%, 100% { opacity: 0; transform: translateX(0); }
+  8% { opacity: 0.95; transform: translateX(-4px); }
+  16% { opacity: 0; }
+  30% { opacity: 0.9; clip-path: inset(18% 0 48% 0); transform: translateX(6px); }
+  40% { opacity: 0; clip-path: inset(0 0 0 0); }
+  56% { opacity: 1; transform: translateX(-3px); }
+  68% { opacity: 0; }
+  84% { opacity: 0.7; transform: translateX(3px); }
+  94% { opacity: 0; }
+}
+
+@keyframes gp-ascii-inv {
+  0%, 100% { opacity: 0; }
+  24% { opacity: 0.92; }
+  30% { opacity: 0; }
+  60% { opacity: 0.8; }
+  66% { opacity: 0; }
+}
+
+/* ── scroll reveal ────────────────────────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

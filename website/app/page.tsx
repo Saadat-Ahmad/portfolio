@@ -1,190 +1,23 @@
-"use client"
+import Sidebar from "@/components/site/Sidebar";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Experience from "@/components/sections/Experience";
+import Work from "@/components/sections/Work";
+import Skills from "@/components/sections/Skills";
+import Contact from "@/components/sections/Contact";
 
-import React, { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Check, ChevronDown, Copy, SquareArrowOutUpRight } from "lucide-react"
-import { Card, CardContent, CardTitle } from "@/components/ui/card"
-import Navbar from "@/components/navbar/Navbar"
-import Footer from "@/components/footer/footer"
-
-export default function HomePage() {
-  const email = "s.saadat.ahmad@gmail.com"
-  const [copied, setCopied] = useState(false)
-
-  const copyEmail = () => {
-    navigator.clipboard.writeText(email)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
-  const projects = [
-    {
-      title: "nCrypt",
-      image: "/ncrypt.jpg",
-      line: "Create unique encryptions and cyphers with your friends",
-      description: "nCrypt lets you create and share your own custom encryption methods for truly personal communication. Explore classic ciphers like Caesar and Base64, or design unique encryptions to keep messages private. Share your custom codes with friends and build a secure, personal language together.",
-      link: "https://saadatahmad.pythonanywhere.com",
-    },
-    {
-      title: "JannSeva",
-      image: "/jannseva.png",
-      line: "Providing quick healthcare to rural India in native dialects",
-      description: "JannSeva is a health support platform built for rural India. It uses the local dialect of the user's region to respond to user's health-related questions and give health education powered by AI. JannSeva also maintains user's medical history and has user's local weather & pollution data to give region specific replies and insights. It is secured with phone number for login using OTP.",
-      link: "https://github.com/Saadat-Ahmad/JannSeva",
-    },
-    {
-      title: "EnVision",
-      image: "/envision.png",
-      line: "Browser Extension for the colorblind people",
-      description: "This web browser extension enhances accessibility for color-blind users by adjusting colors to make them more distinguishable for people with color vision deficiencies. The extension analyzes the colors on any webpage and subtly shifts hues and contrasts to improve clarity (daltonisation) without altering the overall design. This ensures a more inclusive and comfortable browsing experience.",
-      link: "https://github.com/Saadat-Ahmad/envision-chrome-extension",
-    }
-  ]
-
-  const experiences = [
-    {
-      title: "Intern – AMU Innovation Foundation",
-      date: "June 2024 – July 2024",
-      description: "Built geolocation data-driven satellite image capturing programs",
-    },
-    {
-      title: "Satellite payload designer – SS AMU SAT",
-      date: "July 2024 – Present",
-      description: "Implemented the satellite imaging payload on RaspberryPi CM4. Established communication between payload and other satellite subsystems.",
-    },
-    {
-      title: "Web-Development Intern – Orbitalink Pvt. Ltd.",
-      date: "May 2025 – July 2025",
-      description: "Built and deployed a CI/CD pipeline with separate workflows for production and development. Developed various internal APIs, focused on user authentication, session management, admin privilege system, and integrated third party APIs.",
-    },
-
-    {
-      title: "Software Developer Intern – telecrm",
-      date: "August 2025 – Present",
-      description: "Developing automated software tests with JasmineJS for behavior-driven testing, PuppeteerJS for browser automation, and Allure for release-level test monitoring.",
-    },
-    
-  ]
-
+export default function Home() {
   return (
-    <div>
-      <Navbar></Navbar>
-    <main className="container mx-auto px-4 py-12 max-w-4xl space-y-20">
-    
-
-      {/* Introduction */}
-      <section className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
-        <Link href={"https://www.linkedin.com/in/syedsaadatahmad/"}>
-        <Image
-          src="/profile.jpg"
-          alt="Profile"
-          width={250}
-          height={250}
-          className="rounded-lg object-cover transition duration-300 ease-in-out hover:scale-110 hover:translate-1.5"
-        />
-        </Link>
-        <div className="space-y-2">
-          <h2 className="text-3xl">Hey! its <span className="text-accent">Saadat.</span></h2>
-          <h3 className="text-xl pt-4.5 mb-0 pb-0">Computer Engineering undergraduate <br/></h3>
-          <a target="_blank" href="https://en.wikipedia.org/wiki/History_of_Aligarh_Muslim_University" className="text-accent mt-0">@ Aligarh Muslim University</a>
-          <p className="text-muted-foreground pt-5">
-            Software Developer Intern <a target="_blank" className="text-accent pt-5" href="https://telecrm.in">@ telecrm</a>
-          </p>
-        </div>
-      </section>
-
-      {/* Experience Timeline */}
-      <section id="experience">
-        <h2 className="text-2xl text-accent font-semibold mb-6">Experience</h2>
-        <div className="pl-6 pb-8 space-y-8 border-l-2 border-dotted">
-          {experiences.map((exp, idx) => (
-            <div key={idx} className="relative">
-              <span className="absolute left-[-33px] top-1 w-4 h-4 bg-accent rounded-full border-2 border-foregound"></span>
-              <h3 className="font-semibold">{exp.title}</h3>
-              <span className="text-sm text-muted-foreground">{exp.date}</span>
-              <p className="pt-2">{exp.description}</p>
-            </div>
-          ))}
-          </div>
-          <div className="pl-6 mt-0 pt-0 space-y-8 border-l-2 border-none">
-            <div className="relative">
-              <span className="absolute left-[-33px] top-1 w-4 h-4 bg-accent rounded-full border-2 border-foreground"></span>
-              <h3 className="font-semibold">Next Adventure?</h3>
-              <span className="text-sm text-muted-foreground">Present – Forseeable Future</span>
-              <p>Lets build the future together. <Link href={"https://www.linkedin.com/in/syedsaadatahmad/"} className="inline-flex underline text-accent">Lets get in touch <SquareArrowOutUpRight className="ml-2 w-5 h-5"/></Link></p>
-            </div>
-        </div>
-      </section>
-
-      {/* Project Grid Section */}
-<section id="projects">
-  <h2 className="text-2xl text-accent font-semibold mb-6">Projects</h2>
-  <div className="grid lg:grid-cols-3 md:grid-cols-1 md:p-3.5 gap-6">
-    {projects.map((project, idx) => (
-      <Link key={idx} href={project.link} target="_blank" className="group relative">
-        <Card className="relative overflow-hidden rounded-1xl border bg-auto backdrop-invert-25 hover:shadow-2xl transition duration-300 ease-in-out hover:scale-110 hover:backdrop-invert-100">
-          <CardContent className="pt-0 space-y-3">
-            <Image
-              src={project.image}
-              alt={project.title}
-              width={500}
-              height={300}
-              className="rounded-1xl object-cover max-h-full w-full hover:opacity-0"
-            />
-            <CardTitle className="text-lg text-accent font-bold hover:opacity-0">{project.title}</CardTitle>
-            <CardTitle className="text-sm hover:opacity-0">{project.line}</CardTitle>
-            
-            {/* Description on hover */}
-        <div className="absolute inset-0 p-4 text-sm bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-bg opacity-0 transition duration-300 ease-in-out hover:opacity-100">
-              <h1 className="text-lg mb-4 text-accent font-bold">{project.title}</h1>
-              <p className="text-fg">{project.description}</p>
-            </div>
-          </CardContent>
-        </Card>
-      </Link>
-    ))}
-  </div>
-  <div className="flex items-center justify-center">
-  <Link href="https://github.com/Saadat-Ahmad" target="_blank" className="inline-flex items-center hover:underline"> 
-  See all <ChevronDown/> 
-  </Link>
-  </div>
-</section>
-
-
-      {/* Socials */}
-      <section id="socials">
-        <h2 className="text-2xl text-accent font-semibold mb-4">Get in touch</h2>
-        <div className="flex gap-3 text-xs justify-center items-center sm:gap-10 sm:text-base">
-          <Link href="https://github.com/Saadat-Ahmad" target="_blank" className="hover:underline">
-            GitHub
-          </Link>
-          <Link href="https://www.linkedin.com/in/syedsaadatahmad/" target="_blank" className="hover:underline">
-            LinkedIn
-          </Link>
-          <Link href="https://twitter.com/saadatahmad_" target="_blank" className="hover:underline">
-            Twitter/X
-          </Link>
-           <Link href="https://instagram.com/saadatahmad_" target="_blank" className="hover:underline">
-            Instagram
-          </Link>
-          <Button onClick={copyEmail} variant="secondary" className="transition duration-300 text-xs ease-in-out hover:scale-110 sm:text-base">
-            {copied ? (
-              <>
-                <Check className="w-4 h-4 mr-0: sm:w-6 sm:h-6 sm:mr2" /> Copied!
-              </>
-            ) : (
-              <>
-                <Copy className="w-4 h-4 mr-0 sm:w-6 sm:h-6 sm:mr2" /> Copy Email
-              </>
-            )}
-          </Button>
-        </div>
-      </section>
-    </main>
-    <Footer/>
-    </div>
-  )
+    <>
+      <Sidebar />
+      <main className="overflow-x-clip pt-16 transition-[padding] duration-300 ease-out lg:pl-[var(--sidebar-w)] lg:pt-0">
+        <Hero />
+        <About />
+        <Experience />
+        <Work />
+        <Skills />
+        <Contact />
+      </main>
+    </>
+  );
 }
