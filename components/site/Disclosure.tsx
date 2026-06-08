@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import PixelMac from "@/components/site/PixelMac";
 
 export default function Disclosure({
   id,
@@ -78,16 +79,13 @@ export default function Disclosure({
           className="group flex w-full cursor-grow items-center justify-between gap-6 py-7 text-left lg:py-9"
         >
           <span className="block">
-            <span
-              className={cn(
-                "eyebrow flex items-center gap-1.5"
-              )}
-            >
-              <span className={"text-orange"}>[</span>
-              <span className={"text-orange"}>{index}</span>
+            <span className="eyebrow flex items-center gap-1.5">
+              <PixelMac size={18} className="text-orange mr-4" />
+              <span className="text-orange">[</span>
+              <span className="text-orange">{index}</span>
               <span aria-hidden>·</span>
               <span>{name}</span>
-              <span className={"text-orange"}>]</span>
+              <span className="text-orange">]</span>
             </span>
             <span className="mt-3 block font-serif text-3xl font-light leading-tight transition-colors group-hover:text-orange sm:text-4xl">
               {title}

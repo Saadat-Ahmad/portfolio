@@ -75,7 +75,9 @@ export default function Contact() {
       {/* footer bar */}
       <footer className="border-t border-paper/30 px-6 py-6 sm:px-10 lg:px-16">
         <div className="flex flex-col items-center justify-between gap-3 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-paper/70 sm:flex-row">
-          <span>© {year} {profile.name}</span>
+          <span className="inline-flex items-center gap-1.5 text-m">
+              <PixelMac size={25} /> {profile.name} · {year} 
+            </span>
           <span className="hidden sm:inline">React · Next.js ·  Tailwind</span>
           <Link href="#top" className="inline-flex items-center gap-1.5 hover:text-paper">
             Back to top <ArrowUp className="h-3.5 w-3.5" />

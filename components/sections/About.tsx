@@ -1,5 +1,6 @@
 import MacWindow from "@/components/ui/MacWindow";
 import Disclosure from "@/components/site/Disclosure";
+import PixelMac from "@/components/site/PixelMac";
 import { profile, education } from "@/lib/content";
 import { BOOT } from "@/lib/ascii";
 
@@ -28,7 +29,12 @@ export default function About() {
         </div>
 
         <div>
-          <MacWindow tone="inset" title="whoami" className="font-mono text-sm">
+          <MacWindow
+            tone="inset"
+            title="whoami"
+            className="font-mono text-sm"
+            titleRight={<PixelMac size={14} className="text-ink-soft" />}
+          >
             <div className="mb-4 space-y-0.5 text-xs text-ink-soft">
               {BOOT.map((line, i) => (
                 <div key={i}>{line}</div>

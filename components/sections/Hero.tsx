@@ -4,6 +4,7 @@ import MacWindow from "@/components/ui/MacWindow";
 import Reveal from "@/components/site/Reveal";
 import CopyEmail from "@/components/site/CopyEmail";
 import GlitchPortrait from "@/components/site/GlitchPortrait";
+import PixelMac from "@/components/site/PixelMac";
 import { SectionLabel, AsciiArt } from "@/components/site/bits";
 import { profile } from "@/lib/content";
 
@@ -44,13 +45,17 @@ export default function Hero() {
       className="relative scroll-mt-24 px-6 pb-20 pt-20 sm:px-10 lg:px-16 lg:pb-24 lg:pt-24"
     >
       {/* ── masthead ─────────────────────────────────────────── */}
-      <Reveal>
+      <Reveal className="relative z-10">
         <div className="mb-12 flex items-center justify-between gap-4 pb-4 lg:mb-16">
-          <SectionLabel>Hello, World</SectionLabel>
+
+            <span className="inline-flex items-center gap-1 -mt-10">
+              <PixelMac size={35} className="text-orange" />
+              <SectionLabel className="text-xl">Hello, World</SectionLabel>
+            </span>
         </div>
       </Reveal>
 
-      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+      <div className="relative z-10 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         {/* ── left ─────────────────────────────────────────────── */}
         <div className="min-w-0">
           <h1 className="font-serif font-light leading-[0.85] tracking-tight">
