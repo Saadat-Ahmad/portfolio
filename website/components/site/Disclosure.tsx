@@ -19,20 +19,12 @@ export default function Disclosure({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(defaultOpen);
-  const [isActive, setIsActive] = useState(false);
-  // hoveredId is the id of whichever section is currently hovered (globally).
-  // Storing it here (rather than a boolean) means we can suppress the active
-  // section's sage style while another section is hovered, keeping only one
-  // section sage at a time.
+  // id of whichever section is currently hovered (broadcast globally), so only
+  // one section is ever tinted sage at a time.
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const ref = useRef<HTMLElement>(null);
 
-  const isMeHovered = hoveredId === id;
-  const anyHovered = hoveredId !== null;
-  // Full sage (bg + paper text + CSS var overrides) only when active and
-  // nothing else is being hovered.
-  // Hover sage: bg tint only, all text stays dark ink.
-  const hoverSage = isMeHovered;
+  const isHovered = hoveredId === id;
 
   useEffect(() => {
     const reveal = () => {
@@ -48,21 +40,16 @@ export default function Disclosure({
     const onSectionOpen = (e: Event) => {
       if ((e as CustomEvent<string>).detail === id) reveal();
     };
-    const onSectionActive = (e: Event) => {
-      setIsActive((e as CustomEvent<string>).detail === id);
-    };
     const onSectionHover = (e: Event) => {
       setHoveredId((e as CustomEvent<string | null>).detail);
     };
     openIfTargeted();
     window.addEventListener("hashchange", openIfTargeted);
     window.addEventListener("section:open", onSectionOpen);
-    window.addEventListener("section:active", onSectionActive);
     window.addEventListener("section:hover", onSectionHover);
     return () => {
       window.removeEventListener("hashchange", openIfTargeted);
       window.removeEventListener("section:open", onSectionOpen);
-      window.removeEventListener("section:active", onSectionActive);
       window.removeEventListener("section:hover", onSectionHover);
     };
   }, [id]);
@@ -78,10 +65,8 @@ export default function Disclosure({
         window.dispatchEvent(new CustomEvent("section:hover", { detail: null }))
       }
       className={cn(
-        "scroll-mt-24 border-t transition-colors duration-300",
-        hoverSage
-          ? "border-line bg-sage"
-          : "border-line"
+        "scroll-mt-24 border-t border-line transition-colors duration-300",
+        isHovered && "bg-sage"
       )}
     >
       <div className="px-6 sm:px-10 lg:px-16">

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowDownToLine, ArrowUpRight, ArrowUp } from "lucide-react";
 import Reveal from "@/components/site/Reveal";
 import CopyEmail from "@/components/site/CopyEmail";
-import { SectionLabel } from "@/components/site/bits";
 import { PROMPT } from "@/lib/ascii";
 import PixelMac from "@/components/site/PixelMac";
 import { profile, socials } from "@/lib/content";
