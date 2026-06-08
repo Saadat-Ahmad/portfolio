@@ -42,24 +42,24 @@ export default async function ProjectPage({
   return (
     <main className="min-h-screen pb-0">
       {/* slim header */}
-      <header className="sticky top-0 z-40 flex items-center justify-between border-b border-ink bg-paper px-5 py-3 sm:px-8">
+      <header className="sticky top-0 z-40 flex items-center justify-between border-b border-ink bg-orange px-5 py-3 sm:px-8">
         <Link href="/" className="group flex items-center gap-2.5">
-          <span className="grid h-8 w-8 place-items-center border border-ink bg-paper-2 transition-colors group-hover:bg-orange group-hover:text-paper">
+          <span className="grid h-8 w-8 place-items-center border border-ink bg-sage transition-colors group-hover:bg-orange group-hover:text-paper">
             <PixelMac size={18} />
           </span>
-          <span className="font-serif text-base">{profile.shortName}</span>
+          <span className="font-serif text-paper">{profile.shortName}</span>
         </Link>
         <div className="flex items-center gap-4 font-mono text-xs uppercase tracking-[0.12em]">
           <Link
             href="/#work"
-            className="inline-flex items-center gap-1.5 text-ink-soft hover:text-orange"
+            className="inline-flex items-center gap-1.5 text-paper hover:text-sage"
           >
             <ArrowLeft className="h-3.5 w-3.5" /> All work
           </Link>
           <a
             href={profile.resume}
             download
-            className="hidden items-center gap-1.5 border border-ink px-3 py-1.5 hover:bg-orange hover:text-paper sm:inline-flex"
+            className="hidden items-center gap-1.5 border text-paper border-ink px-3 py-1.5 hover:bg-sage text-ink sm:inline-flex"
           >
             <ArrowDownToLine className="h-3.5 w-3.5" /> Résumé
           </a>
@@ -122,33 +122,33 @@ export default async function ProjectPage({
       </article>
 
       {/* colored highlight panel */}
-      <section className={`${panelBg} border-y border-ink text-paper`}>
+      <section className={`${panelBg} border-y border-ink text-ink`}>
         <div className="mx-auto max-w-5xl px-6 py-16 sm:px-8 lg:py-20">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-paper/70">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-ink/70">
             [ highlights ]
           </p>
 
           <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
             {p.highlights.map((h) => (
-              <div key={h.n} className="border-t border-paper/30 pt-4">
-                <span className="font-serif text-3xl text-paper/60">{h.n}</span>
+              <div key={h.n} className="border-t border-ink/30 pt-4">
+                <span className="font-serif text-3xl text-ink/60">{h.n}</span>
                 <h3 className="mt-2 font-serif text-xl">{h.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-paper/80">
+                <p className="mt-2 text-sm leading-relaxed text-ink/80">
                   {h.body}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-14 grid gap-10 border-t border-paper/30 pt-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="mt-14 grid gap-10 border-t border-ink/30 pt-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.16em] text-paper/70">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-ink/70">
                 What it does
               </p>
               <ul className="mt-4 space-y-2.5">
                 {p.features.map((f, i) => (
-                  <li key={i} className="flex items-start gap-3 text-paper/90">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-paper" />
+                  <li key={i} className="flex items-start gap-3 text-ink/90">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-ink" />
                     <span>{f}</span>
                   </li>
                 ))}

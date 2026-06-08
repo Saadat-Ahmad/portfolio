@@ -3,10 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
-/**
- * A collapsible section. Turns sage when it is the active viewport section
- * or when the user hovers over it. Hero (#top) is excluded by the sidebar.
- */
 export default function Disclosure({
   id,
   index,
@@ -24,9 +20,19 @@ export default function Disclosure({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   const [isActive, setIsActive] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  // hoveredId is the id of whichever section is currently hovered (globally).
+  // Storing it here (rather than a boolean) means we can suppress the active
+  // section's sage style while another section is hovered, keeping only one
+  // section sage at a time.
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const ref = useRef<HTMLElement>(null);
-  const sage = isActive || isHovered;
+
+  const isMeHovered = hoveredId === id;
+  const anyHovered = hoveredId !== null;
+  // Full sage (bg + paper text + CSS var overrides) only when active and
+  // nothing else is being hovered.
+  // Hover sage: bg tint only, all text stays dark ink.
+  const hoverSage = isMeHovered;
 
   useEffect(() => {
     const reveal = () => {
@@ -39,21 +45,25 @@ export default function Disclosure({
     const openIfTargeted = () => {
       if (window.location.hash === `#${id}`) reveal();
     };
-    // Fired by the sidebar/nav so re-clicking the current section still expands it.
     const onSectionOpen = (e: Event) => {
       if ((e as CustomEvent<string>).detail === id) reveal();
     };
     const onSectionActive = (e: Event) => {
       setIsActive((e as CustomEvent<string>).detail === id);
     };
+    const onSectionHover = (e: Event) => {
+      setHoveredId((e as CustomEvent<string | null>).detail);
+    };
     openIfTargeted();
     window.addEventListener("hashchange", openIfTargeted);
     window.addEventListener("section:open", onSectionOpen);
     window.addEventListener("section:active", onSectionActive);
+    window.addEventListener("section:hover", onSectionHover);
     return () => {
       window.removeEventListener("hashchange", openIfTargeted);
       window.removeEventListener("section:open", onSectionOpen);
       window.removeEventListener("section:active", onSectionActive);
+      window.removeEventListener("section:hover", onSectionHover);
     };
   }, [id]);
 
@@ -61,12 +71,17 @@ export default function Disclosure({
     <section
       ref={ref}
       id={id}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      data-sage={sage || undefined}
+      onMouseEnter={() =>
+        window.dispatchEvent(new CustomEvent("section:hover", { detail: id }))
+      }
+      onMouseLeave={() =>
+        window.dispatchEvent(new CustomEvent("section:hover", { detail: null }))
+      }
       className={cn(
         "scroll-mt-24 border-t transition-colors duration-300",
-        sage ? "border-ink bg-sage text-paper" : "border-line"
+        hoverSage
+          ? "border-line bg-sage"
+          : "border-line"
       )}
     >
       <div className="px-6 sm:px-10 lg:px-16">
@@ -80,15 +95,14 @@ export default function Disclosure({
           <span className="block">
             <span
               className={cn(
-                "eyebrow flex items-center gap-1.5",
-                sage ? "text-paper/80" : "text-ink-soft"
+                "eyebrow flex items-center gap-1.5"
               )}
             >
-              <span className={sage ? "text-paper" : "text-orange"}>[</span>
-              <span className={sage ? "text-paper" : "text-orange"}>{index}</span>
+              <span className={"text-orange"}>[</span>
+              <span className={"text-orange"}>{index}</span>
               <span aria-hidden>·</span>
               <span>{name}</span>
-              <span className={sage ? "text-paper" : "text-orange"}>]</span>
+              <span className={"text-orange"}>]</span>
             </span>
             <span className="mt-3 block font-serif text-3xl font-light leading-tight transition-colors group-hover:text-orange sm:text-4xl">
               {title}
@@ -98,7 +112,7 @@ export default function Disclosure({
             aria-hidden
             className={cn(
               "shrink-0 font-mono text-xl leading-none transition-transform duration-300 group-hover:scale-110",
-              sage ? "text-paper" : "text-orange"
+              "text-orange"
             )}
           >
             {open ? "[ - ]" : "[ + ]"}

@@ -34,7 +34,7 @@ export const SAD_MAC = String.raw`
 `.trim();
 
 /** Tiny prompt motif used as a sign-off. */
-export const PROMPT = String.raw`terminal@saadat:~$ ./build-the-future.sh`;
+export const PROMPT = String.raw`terminal@saadat:~$ ./say-hello.sh`;
 
 /** Fake boot lines for terminal flavour. */
 export const BOOT = [

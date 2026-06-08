@@ -9,11 +9,11 @@ export default function Experience() {
       name="Experience"
       title="Where I've shipped."
     >
-      <div>
+      <div className="group/exp">
         {experiences.map((exp, i) => (
           <article
             key={exp.company}
-            className="group grid gap-5 border-t border-line py-9 first:border-t-0 first:pt-0 lg:grid-cols-[210px_1fr] lg:gap-12"
+            className="group grid gap-5 border-t border-line py-9 transition-opacity duration-300 first:border-t-0 first:pt-0 group-hover/exp:opacity-40 hover:opacity-100! lg:grid-cols-[210px_1fr] lg:gap-12"
           >
             {/* meta column */}
             <div className="font-mono text-xs text-ink-soft">
@@ -65,7 +65,7 @@ export default function Experience() {
         ))}
 
         {/* Education: final row on the timeline */}
-        <article className="group grid gap-5 border-t border-line py-9 lg:grid-cols-[210px_1fr] lg:gap-12">
+        <article className="group grid gap-5 border-t border-line py-9 transition-opacity duration-300 group-hover/exp:opacity-40 hover:opacity-100! lg:grid-cols-[210px_1fr] lg:gap-12">
           <div className="font-mono text-xs text-ink-soft">
             <span className="font-serif text-4xl leading-none text-line transition-colors group-hover:text-orange">
               ★

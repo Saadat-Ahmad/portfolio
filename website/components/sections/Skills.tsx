@@ -27,7 +27,7 @@ function SkillChip({ name, logo }: { name: string; logo: string | null }) {
 export default function Skills() {
   return (
     <Disclosure id="skills" index="04" name="Skills" title="The toolbox.">
-      <p className="-mt-2 mb-8 max-w-xl text-paper/85">
+      <p className="mt-2 mb-8 max-w-xl text-ink/85">
         Languages, frameworks, and the plumbing underneath.
       </p>
 

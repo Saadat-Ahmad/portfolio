@@ -14,8 +14,8 @@ export const profile = {
   intro:
     "I build full-stack products and the infrastructure beneath them: privacy-first desktop AI, FastAPI services, satellite imaging payloads, and the CI/CD pipelines that ship them.",
   about: [
-    "Computer Engineering undergrad at Aligarh Muslim University (B.Tech, '27). I like the whole stack: shipping the web app, the API behind it, and the boxes it runs on.",
-    "Lately that's meant owning the web + distribution layer for a privacy-first desktop AI product at Recklabs, hardening E2E test pipelines at Telecrm, and (for something different) flying an imaging payload on a university nanosatellite.",
+    "Computer Engineering undergrad at Aligarh Muslim University (B.Tech, '27). I never learned to pick a side of the stack, which is how I end up writing the interface, the API, and the deploy script for the same feature.",
+    "Lately that's meant owning the web and distribution layer for a privacy-first desktop AI product at Recklabs, hardening E2E test pipelines at Telecrm, and (for something different) flying an imaging payload on a university nanosatellite.",
   ],
 } as const;
 
@@ -71,8 +71,8 @@ export const experiences: Experience[] = [
       "Hardened E2E test automation and CI/CD across every release in an Agile team on 14-day sprints.",
     bullets: [
       "Expanded automated E2E regression suites (Puppeteer, Jasmine, FFmpeg, Allure, AWS S3) and wired them into the CI/CD pipeline.",
-      "Operated and monitored test pipelines end-to-end, triaging failures, root-causing flakiness, and ensuring reliable execution each cycle.",
-      "Integrated test-case history into Allure Reports, giving the team clear release-level trend and failure visibility.",
+      "Ran the test pipelines end-to-end: triaged failures, chased down flaky tests, and kept every release cycle green.",
+      "Wired test-case history into Allure Reports so the team could read release trends and catch failures at a glance.",
     ],
     stack: ["Puppeteer", "Jasmine", "Allure", "FFmpeg", "AWS S3", "CI/CD"],
   },
@@ -101,7 +101,7 @@ export const experiences: Experience[] = [
     bullets: [
       "Designed and deployed a CI/CD pipeline with GitHub Actions: separate production and development workflows.",
       "Built internal REST APIs for authentication, session management, role-based admin privileges, and third-party integrations.",
-      "Led the migration from Flask + SQLite3 to Next.js + PostgreSQL, improving scalability and query performance.",
+      "Moved the data layer onto PostgreSQL, clearing SQLite's single-writer bottleneck so the app could take real concurrent load.",
     ],
     stack: ["GitHub Actions", "REST APIs", "Next.js", "PostgreSQL", "Flask"],
   },
@@ -135,7 +135,7 @@ export const projects: Project[] = [
       { label: "About", href: "/work/ncrypt" },
     ],
     overview:
-      "nCrypt is a Flask web platform for designing custom encryption schemes and sharing them with friends to build a private, personal language. Explore classic ciphers like Caesar and Base64, or invent your own.",
+      "nCrypt is a Flask web platform for designing your own encryption schemes and trading them with friends, until a few people share a private language no one else can read. Stack classic ciphers and encodings like Caesar and Base64, or roll your own.",
     highlights: [
       { n: "01", title: "RESTful core", body: "Clean REST APIs over SQLite data models for users and schemes." },
       { n: "02", title: "Secure by default", body: "Werkzeug-powered password hashing and end-to-end HTTPS." },
@@ -160,7 +160,7 @@ export const projects: Project[] = [
       { label: "About", href: "/work/jannseva" },
     ],
     overview:
-      "JannSeva is a health-support platform built for rural India. It answers health questions in the user's local dialect, maintains their medical history, and folds in hyper-local weather and air-quality data for region-specific insight.",
+      "JannSeva is a health-support platform built for rural India. It answers questions in the user's own dialect, keeps track of their medical history, and pulls in hyper-local weather and air-quality data so the advice actually fits where they live.",
     highlights: [
       { n: "01", title: "120+ dialects", body: "Integrated NLP responds in the user's regional language." },
       { n: "02", title: "Hyper-local", body: "Weather and air-quality APIs generate location-specific health insight." },
@@ -185,7 +185,7 @@ export const projects: Project[] = [
       { label: "About", href: "/work/envision" },
     ],
     overview:
-      "EnVision improves accessibility for colour-blind users by subtly shifting hues and contrast on any webpage (daltonisation) to make colours more distinguishable, without altering the overall design.",
+      "EnVision re-tunes the colours on any webpage so colour-blind users can actually tell them apart, nudging hue and contrast (daltonisation) without touching the design the site intended.",
     highlights: [
       { n: "01", title: "Daltonisation", body: "Analyses page colours and remaps them for colour-vision deficiencies." },
       { n: "02", title: "Non-destructive", body: "Adjusts clarity while preserving each site's intended look." },
