@@ -28,7 +28,7 @@ export default function Contact() {
           </h2>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-paper/85">
             Open to internships, full-time roles, and the occasional weird
-            side project. Email reaches me fastest, or grab the résumé.
+            side project. Email reaches me the fastest. : &#10223;
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -67,6 +67,7 @@ export default function Contact() {
             className="mt-12 bg-brick select-none overflow-x-auto font-mono text-xs text-paper/80"
           >
             {PROMPT}
+            <span className="term-cursor"/>
           </pre>
         </Reveal>
       </div>

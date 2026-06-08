@@ -25,9 +25,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://saadatahmad.com"),
-  title: "Syed Saadat Ahmad · Full-Stack & Systems Engineer",
+  title: "Syed Saadat Ahmad · Full-Stack Engineer",
   description:
-    "Syed Saadat Ahmad is a full-stack and systems engineer in New Delhi, India, building privacy-first desktop AI at Recklabs, satellite imaging payloads, FastAPI services, and CI/CD infrastructure.",
+    "Syed Saadat Ahmad is a full-stack and engineer in New Delhi, India, building desktop AI-Native application at Recklabs, has worked on satellite imaging payloads, FastAPI services, and CI/CD infrastructure.",
   keywords: [
     "Syed Saadat Ahmad",
     "Full-Stack Developer",
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     "Aligarh Muslim University",
   ],
   openGraph: {
-    title: "Syed Saadat Ahmad · Full-Stack & Systems Engineer",
+    title: "Syed Saadat Ahmad · Full-Stack Engineer",
     description:
-      "Full-stack & systems engineer: privacy-first desktop AI, satellite payloads, FastAPI services, CI/CD.",
+      "Full-stack engineer: privacy-first desktop AI, satellite payloads, FastAPI services, CI/CD.",
     type: "website",
   },
 };

@@ -12,7 +12,7 @@ export const profile = {
   resume: "/SyedSaadatAhmad-Resume.pdf",
   current: { label: "Recklabs", href: "https://recklabs.com" },
   intro:
-    "I build full-stack products and the infrastructure beneath them: privacy-first desktop AI, FastAPI services, satellite imaging payloads, and the CI/CD pipelines that ship them.",
+    "I am a full-stack engineer that builds software products and the infrastructure beneath them.",
   about: [
     "Computer Engineering undergrad at Aligarh Muslim University (B.Tech, '27). I never learned to pick a side of the stack, which is how I end up writing the interface, the API, and the deploy script for the same feature.",
     "Lately that's meant owning the web and distribution layer for a privacy-first desktop AI product at Recklabs, hardening E2E test pipelines at Telecrm, and (for something different) flying an imaging payload on a university nanosatellite.",
@@ -48,22 +48,22 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
-    role: "Full-Stack Developer Intern",
-    company: "Recklabs Services",
-    location: "Remote",
+    role: "Full-Stack Developer",
+    company: "Recklabs",
+    location: "Remote • Noida, India",
     period: "Jun 2026 - Present",
     current: true,
     summary:
-      "Owning the full-stack web and distribution layer for an MVP-stage, privacy-first desktop AI product.",
+      "Owning the full-stack web and distribution layer for an MVP-stage, Desktop AI-Native application.",
     bullets: [
       "Built the marketing site and product web app in Next.js, backed by a FastAPI + PostgreSQL service with SQLAlchemy models and Alembic migrations.",
       "Implemented auth & licensing: JWT + bcrypt, with Redis and Celery handling background jobs.",
-      "Engineered cross-platform distribution: a Windows installer with auth-gated delivery, containerised with Docker Compose, deployed to a VPS behind Nginx.",
+      "Engineered cross-platform distribution: a Desktop installer with auth-gated delivery, containerised with Docker Compose, deployed to a VPS behind Nginx.",
     ],
     stack: ["Next.js", "FastAPI", "PostgreSQL", "Redis", "Celery", "Docker", "Nginx"],
   },
   {
-    role: "Software Developer Intern",
+    role: "Software Developer",
     company: "Telecrm",
     location: "Aligarh, India",
     period: "Aug 2025 - Jun 2026",
@@ -92,7 +92,7 @@ export const experiences: Experience[] = [
     stack: ["Raspberry Pi CM4", "CAN bus", "Python", "Embedded"],
   },
   {
-    role: "Backend Web Developer Intern",
+    role: "Backend Web Developer",
     company: "Orbitalink Pvt. Ltd.",
     location: "Aligarh, India",
     period: "May 2025 - Jul 2025",

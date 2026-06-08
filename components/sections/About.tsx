@@ -44,7 +44,7 @@ export default function About() {
             </dl>
             <div className="mt-5 border-t border-line pt-3 text-ink-soft">
               <span className="text-orange">terminal@saadat</span>:~${" "}
-              <span className="inline-block h-3.5 w-2 translate-y-0.5 animate-pulse bg-ink" />
+              <span className="term-cursor" />
             </div>
           </MacWindow>
         </div>
