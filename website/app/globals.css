@@ -25,10 +25,10 @@
   --color-line: #cabd9f;         /* hairline rules */
 
   /* Accents */
-  --color-orange: #df7009;
+  --color-orange: #c12d0d;
   --color-orange-deep: #b85a05;
-  --color-sage: #6c7a57;         /* muted green panel */
-  --color-brick: #9c4530;        /* brick red panel */
+  --color-sage: #9dbeb7;         /* dusty teal panel (seaside palette) */
+  --color-brick: #9e1d03;        /* vermilion panel (seaside palette) */
 
   --radius-card: 2px;
 }
@@ -74,7 +74,7 @@ body {
     font-size: 0.72rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-ink-soft);
+    color: var(--color-ink);
   }
 }
 
@@ -273,4 +273,95 @@ body {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* ── marquee ticker ───────────────────────────────────────────────────── */
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 32s linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ── hero wordmark entrance ───────────────────────────────────────────── */
+
+.hero-char {
+  display: inline-block;
+  opacity: 0;
+  animation: char-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-dot {
+  display: inline-block;
+  opacity: 0;
+  animation: char-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes char-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes char-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  .hero-char,
+  .hero-dot {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* ── sage-section color overrides ────────────────────────────────────── */
+/* Tailwind v4 reads colors from CSS custom properties, so remapping the
+   properties inside [data-sage] makes every ink/line utility auto-adapt.  */
+
+[data-sage] {
+  --color-ink:      var(--color-paper);
+  --color-ink-soft: color-mix(in srgb, var(--color-paper) 65%, transparent);
+  --color-line:     color-mix(in srgb, var(--color-paper) 30%, transparent);
+}
+
+/* ── terminal block cursor ────────────────────────────────────────────── */
+
+.term-cursor {
+  display: inline-block;
+  width: 0;
+  height: 0.9em;
+  border-right: 0.5em solid currentColor;
+  vertical-align: -0.12em;
+  animation: cursor-blink 1s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { border-right-color: currentColor; }
+  50%       { border-right-color: transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .term-cursor { animation: none; }
 }

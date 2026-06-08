@@ -26,6 +26,7 @@ export default function Work() {
             <MacWindow
               key={p.slug}
               title={p.window}
+              tone="inset"
               bodyClassName="p-0"
               className="flex h-full flex-col transition-transform duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0_0_var(--color-orange)]"
             >

@@ -6,12 +6,17 @@ import {
   Menu,
   X,
   ArrowDownToLine,
-  PanelLeftOpen,
-  PanelLeftClose,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { nav, socials, profile } from "@/lib/content";
 import PixelMac from "@/components/site/PixelMac";
 import { cn } from "@/lib/utils";
+
+/** Ask the target section (if collapsible) to expand. */
+function openSection(id: string) {
+  window.dispatchEvent(new CustomEvent("section:open", { detail: id }));
+}
 
 /** Logo square only (used in the collapsed rail). */
 function LogoMark() {
@@ -19,7 +24,7 @@ function LogoMark() {
     <Link
       href="#top"
       aria-label={profile.shortName}
-      className="group grid h-9 w-9 place-items-center border border-ink bg-paper-2 text-ink transition-colors hover:bg-orange hover:text-paper"
+      className="group grid h-9 w-9 place-items-center border border-ink bg-sage text-ink transition-colors hover:bg-orange hover:text-paper"
     >
       <PixelMac size={20} />
     </Link>
@@ -29,12 +34,12 @@ function LogoMark() {
 function Wordmark() {
   return (
     <Link href="#top" className="group flex items-center gap-2.5">
-      <span className="grid h-9 w-9 place-items-center border border-ink bg-paper-2 text-ink transition-colors group-hover:bg-orange group-hover:text-paper">
+      <span className="grid h-9 w-9 place-items-center border border-ink bg-sage text-ink transition-colors group-hover:bg-orange group-hover:text-paper">
         <PixelMac size={20} />
       </span>
       <span className="leading-tight">
         <span className="block font-serif text-base">{profile.shortName}</span>
-        <span className="block font-mono text-[0.62rem] uppercase tracking-[0.18em] text-ink-soft">
+        <span className="block font-mono text-[0.62rem] uppercase tracking-[0.18em] text-base">
           {profile.role}
         </span>
       </span>
@@ -54,12 +59,12 @@ function ToggleBtn({
       onClick={onClick}
       aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
       aria-expanded={!collapsed}
-      className="grid h-8 w-8 shrink-0 place-items-center border border-ink bg-paper-2 text-ink transition-colors hover:bg-orange hover:text-paper"
+      className="grid h-8 w-8 shrink-0 place-items-center border border-transparent bg-orange text-ink transition-colors hover:bg-orange hover:text-paper hover:border-ink"
     >
       {collapsed ? (
-        <PanelLeftOpen className="h-4 w-4" />
+        <ChevronRight className="h-4 w-4" />
       ) : (
-        <PanelLeftClose className="h-4 w-4" />
+        <ChevronLeft className="h-4 w-4" />
       )}
     </button>
   );
@@ -75,18 +80,21 @@ function NavList({ active, onNavigate }: { active: string; onNavigate?: () => vo
           <li key={item.id}>
             <Link
               href={item.href}
-              onClick={onNavigate}
+              onClick={() => {
+                openSection(item.id);
+                onNavigate?.();
+              }}
               className={cn(
                 "group flex items-center gap-3 border border-transparent px-2 py-1.5 font-mono text-sm transition-colors",
                 isActive
-                  ? "border-ink bg-ink text-paper"
-                  : "text-ink hover:border-line hover:bg-paper-2"
+                  ? "border-ink bg-sage text-ink"
+                  : "text-ink hover:border-line hover:bg-sage"
               )}
             >
               <span
                 className={cn(
                   "text-xs",
-                  isActive ? "text-orange" : "text-ink-soft group-hover:text-orange"
+                  isActive ? "text-orange" : "text-page group-hover:text-orange"
                 )}
               >
                 {String(i + 1).padStart(2, "0")}
@@ -112,15 +120,16 @@ function NavRail({ active }: { active: string }) {
             <Link
               href={item.href}
               aria-label={item.label}
+              onClick={() => openSection(item.id)}
               className={cn(
                 "group/navitem relative grid h-9 w-9 place-items-center border font-mono text-xs transition-colors",
                 isActive
-                  ? "border-ink bg-ink text-orange"
-                  : "border-transparent text-ink-soft hover:border-line hover:bg-paper-2 hover:text-orange"
+                  ? "border-ink bg-sage text-orange"
+                  : "border-transparent text-page hover:border-line hover:bg-sage hover:text-orange"
               )}
             >
               {String(i + 1).padStart(2, "0")}
-              <span className="pointer-events-none absolute left-full ml-2 hidden whitespace-nowrap border border-ink bg-paper-2 px-2 py-1 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink shadow-[3px_3px_0_0_var(--color-ink)] group-hover/navitem:block">
+              <span className="pointer-events-none absolute left-full ml-2 hidden whitespace-nowrap border border-ink bg-sage px-2 py-1 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink shadow-[3px_3px_0_0_var(--color-ink)] group-hover/navitem:block">
                 {item.label}
               </span>
             </Link>
@@ -141,7 +150,7 @@ function Footer() {
             href={s.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-ink-soft underline-offset-4 transition-colors hover:text-orange hover:underline"
+            className="font-mono text-xs text-ink underline-offset-4 transition-colors hover:text-sage hover:underline"
           >
             {s.short}
           </a>
@@ -150,7 +159,7 @@ function Footer() {
       <a
         href={profile.resume}
         download
-        className="inline-flex w-full items-center justify-center gap-2 border border-ink bg-paper-2 px-3 py-2 font-mono text-xs uppercase tracking-[0.14em] transition-colors hover:bg-orange hover:text-paper"
+        className="inline-flex w-full items-center justify-center gap-2 border border-ink bg-sage px-3 py-2 font-mono text-xs uppercase tracking-[0.14em] transition-colors hover:bg-orange hover:text-paper"
       >
         <ArrowDownToLine className="h-3.5 w-3.5" /> Résumé
       </a>
@@ -188,6 +197,11 @@ export default function Sidebar() {
     return () => io.disconnect();
   }, []);
 
+  // Broadcast active section so Disclosure components can style themselves.
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("section:active", { detail: active }));
+  }, [active]);
+
   // lock scroll while mobile drawer is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -201,7 +215,7 @@ export default function Sidebar() {
       {/* Desktop sidebar (collapsible) */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-40 hidden flex-col justify-between border-r border-ink bg-paper py-7 transition-[width] duration-300 ease-out lg:flex",
+          "fixed inset-y-0 left-0 z-40 hidden flex-col justify-between border-r border-ink bg-orange py-7 transition-[width] duration-300 ease-out lg:flex",
           collapsed ? "w-16 items-center px-2" : "w-64 px-5"
         )}
       >
@@ -236,10 +250,10 @@ export default function Sidebar() {
             href={profile.resume}
             download
             aria-label="Résumé"
-            className="group/navitem relative grid h-9 w-9 place-items-center border border-ink bg-paper-2 text-ink transition-colors hover:bg-orange hover:text-paper"
+            className="group/navitem relative grid h-9 w-9 place-items-center border border-ink bg-sage text-ink transition-colors hover:bg-orange hover:text-paper"
           >
             <ArrowDownToLine className="h-4 w-4" />
-            <span className="pointer-events-none absolute left-full ml-2 hidden whitespace-nowrap border border-ink bg-paper-2 px-2 py-1 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink shadow-[3px_3px_0_0_var(--color-ink)] group-hover/navitem:block">
+            <span className="pointer-events-none absolute left-full ml-2 hidden whitespace-nowrap border border-ink bg-sage px-2 py-1 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink shadow-[3px_3px_0_0_var(--color-ink)] group-hover/navitem:block">
               Résumé
             </span>
           </a>

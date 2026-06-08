@@ -5,8 +5,8 @@
 export const profile = {
   name: "Syed Saadat Ahmad",
   shortName: "Saadat Ahmad",
-  role: "Full-Stack & Systems Engineer",
-  location: "Aligarh, India",
+  role: "Full-Stack Engineer",
+  location: "New Delhi, India",
   email: "s.saadat.ahmad@gmail.com",
   phone: "+91 74510 77808",
   resume: "/SyedSaadatAhmad-Resume.pdf",
@@ -261,3 +261,10 @@ export const education = {
   university: "Aligarh Muslim University",
   period: "Expected 2027",
 } as const;
+
+/* Hero stats ledger. Counts derive from the arrays above so they never drift. */
+export const stats = [
+  { value: String(experiences.length).padStart(2, "0"), label: "Roles" },
+  { value: String(projects.length).padStart(2, "0"), label: "Projects" },
+  { value: "2027", label: "Grad. year" },
+] as const;

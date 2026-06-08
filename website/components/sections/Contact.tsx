@@ -2,8 +2,9 @@ import Link from "next/link";
 import { ArrowDownToLine, ArrowUpRight, ArrowUp } from "lucide-react";
 import Reveal from "@/components/site/Reveal";
 import CopyEmail from "@/components/site/CopyEmail";
-import { SectionLabel, AsciiArt } from "@/components/site/bits";
-import { PROMPT, HAPPY_MAC } from "@/lib/ascii";
+import { SectionLabel } from "@/components/site/bits";
+import { PROMPT } from "@/lib/ascii";
+import PixelMac from "@/components/site/PixelMac";
 import { profile, socials } from "@/lib/content";
 
 export default function Contact() {
@@ -14,17 +15,17 @@ export default function Contact() {
       className="scroll-mt-24 border-t border-ink bg-brick text-paper"
     >
       <div className="relative overflow-hidden px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
-        <AsciiArt
-          art={HAPPY_MAC}
-          className="pointer-events-none absolute -right-8 -top-8 z-0 hidden text-[26px] leading-[1.02] text-paper/10 sm:block lg:text-[40px]"
+        <PixelMac
+          size={220}
+          className="pointer-events-none absolute -right-8 -top-8 z-0 hidden text-paper/10 sm:block"
         />
         <Reveal className="relative z-10">
-          <SectionLabel index="05" className="text-paper">
+          {/* <SectionLabel index="05" className="text-paper">
             Contact
-          </SectionLabel>
+          </SectionLabel> */}
           <h2 className="mt-6 max-w-3xl font-serif text-5xl font-light leading-[0.95] sm:text-6xl lg:text-7xl">
-            Let&apos;s build the{" "}
-            <span className="italic text-paper">future</span> together.
+            Let&apos;s{" "}
+            <span className="italic text-paper">build</span> together.
           </h2>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-paper/85">
             Open to internships, roles and collaborations. The fastest way to
@@ -64,10 +65,9 @@ export default function Contact() {
           {/* ascii sign-off */}
           <pre
             aria-hidden
-            className="mt-12 select-none overflow-x-auto font-mono text-xs text-paper/80"
+            className="mt-12 bg-brick select-none overflow-x-auto font-mono text-xs text-paper/80"
           >
             {PROMPT}
-            <span className="ml-1 inline-block h-3 w-2 translate-y-0.5 animate-pulse bg-paper align-middle" />
           </pre>
         </Reveal>
       </div>
@@ -76,7 +76,7 @@ export default function Contact() {
       <footer className="border-t border-paper/30 px-6 py-6 sm:px-10 lg:px-16">
         <div className="flex flex-col items-center justify-between gap-3 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-paper/70 sm:flex-row">
           <span>© {year} {profile.name}</span>
-          <span className="hidden sm:inline">Built in Aligarh · Next.js · Tailwind</span>
+          <span className="hidden sm:inline">Built by me</span>
           <Link href="#top" className="inline-flex items-center gap-1.5 hover:text-paper">
             Back to top <ArrowUp className="h-3.5 w-3.5" />
           </Link>

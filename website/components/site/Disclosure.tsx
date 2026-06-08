@@ -3,18 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
-type Tone = "paper" | "sage";
-
 /**
- * A collapsible section. Starts closed; click the header (or navigate to its
- * #hash from the sidebar) to expand. Animates height via the grid-rows trick.
+ * A collapsible section. Turns sage when it is the active viewport section
+ * or when the user hovers over it. Hero (#top) is excluded by the sidebar.
  */
 export default function Disclosure({
   id,
   index,
   name,
   title,
-  tone = "paper",
   defaultOpen = false,
   children,
 }: {
@@ -22,35 +19,53 @@ export default function Disclosure({
   index: string;
   name: string;
   title: string;
-  tone?: Tone;
   defaultOpen?: boolean;
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const [isActive, setIsActive] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const ref = useRef<HTMLElement>(null);
-  const sage = tone === "sage";
+  const sage = isActive || isHovered;
 
   useEffect(() => {
+    const reveal = () => {
+      setOpen(true);
+      setTimeout(
+        () => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
+        80
+      );
+    };
     const openIfTargeted = () => {
-      if (window.location.hash === `#${id}`) {
-        setOpen(true);
-        setTimeout(
-          () => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
-          80
-        );
-      }
+      if (window.location.hash === `#${id}`) reveal();
+    };
+    // Fired by the sidebar/nav so re-clicking the current section still expands it.
+    const onSectionOpen = (e: Event) => {
+      if ((e as CustomEvent<string>).detail === id) reveal();
+    };
+    const onSectionActive = (e: Event) => {
+      setIsActive((e as CustomEvent<string>).detail === id);
     };
     openIfTargeted();
     window.addEventListener("hashchange", openIfTargeted);
-    return () => window.removeEventListener("hashchange", openIfTargeted);
+    window.addEventListener("section:open", onSectionOpen);
+    window.addEventListener("section:active", onSectionActive);
+    return () => {
+      window.removeEventListener("hashchange", openIfTargeted);
+      window.removeEventListener("section:open", onSectionOpen);
+      window.removeEventListener("section:active", onSectionActive);
+    };
   }, [id]);
 
   return (
     <section
       ref={ref}
       id={id}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      data-sage={sage || undefined}
       className={cn(
-        "scroll-mt-24 border-t",
+        "scroll-mt-24 border-t transition-colors duration-300",
         sage ? "border-ink bg-sage text-paper" : "border-line"
       )}
     >
