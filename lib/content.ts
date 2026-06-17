@@ -54,13 +54,14 @@ export const experiences: Experience[] = [
     period: "Jun 2026 - Present",
     current: true,
     summary:
-      "Owning the full-stack web and distribution layer for an MVP-stage, Desktop AI-Native application.",
+      "Owning the full-stack web, licensing, and distribution layers for an MVP-stage, privacy-first desktop AI product — an MCP platform that wires custom connectors into Claude Desktop.",
     bullets: [
-      "Built the marketing site and product web app in Next.js, backed by a FastAPI + PostgreSQL service with SQLAlchemy models and Alembic migrations.",
-      "Implemented auth & licensing: JWT + bcrypt, with Redis and Celery handling background jobs.",
-      "Engineered cross-platform distribution: a Desktop installer with auth-gated delivery, containerised with Docker Compose, deployed to a VPS behind Nginx.",
+      "Built the marketing site and product portal as a server-rendered FastAPI + Jinja2 app on PostgreSQL, with SQLAlchemy models, Alembic migrations, and JWT + bcrypt auth.",
+      "Built a tamper-proof, compiled licensing/entitlement layer for software licensing.",
+      "Engineered on-demand installer builds: user selections at login compile per user into a custom Windows .exe via GitHub Actions (Inno Setup), with auth-gated delivery.",
+      "Hardened distribution by compiling Python to native binaries (.pyd/.exe) with Nuitka for tamper resistance; containerised with Docker Compose and deployed to a VPS behind Nginx.",
     ],
-    stack: ["Next.js", "FastAPI", "PostgreSQL", "Redis", "Celery", "Docker", "Nginx"],
+    stack: ["FastAPI", "Jinja2", "PostgreSQL", "MCP", "Nuitka", "Docker", "Nginx"],
   },
   {
     role: "Software Developer",

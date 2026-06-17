@@ -1,0 +1,112 @@
+% Syed Saadat Ahmad — résumé
+% Build:  tectonic SyedSaadatAhmad-Resume.tex   (or pdflatex)
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[top=0.4in,bottom=0.4in,left=0.5in,right=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\definecolor{linkblue}{HTML}{2563EB}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=linkblue,
+  linkcolor=linkblue,
+  pdftitle={Syed Saadat Ahmad — Resume},
+  pdfauthor={Syed Saadat Ahmad}
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% Section headers: bold, slightly larger, full-width rule beneath
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\vspace{1pt}\titlerule]
+\titlespacing{\section}{0pt}{4pt}{2pt}
+
+% Tight bullet lists
+\setlist[itemize]{leftmargin=1.4em, itemsep=0pt, topsep=1pt, parsep=0pt,
+  label=\textbullet}
+
+% Separator between role / company / location
+\newcommand{\sep}{\,\textbullet\,}
+
+% Entry header: bold role, company, italic location ... right-flushed italic date
+\newcommand{\entry}[4]{%
+  \textbf{#1}\sep #2\sep \textit{#3}\hfill\textit{#4}\par}
+
+\begin{document}
+
+% ── Header ──────────────────────────────────────────────────────────────
+\begin{center}
+  {\Huge Syed Saadat Ahmad}\\[3pt]
+  {\small \href{mailto:s.saadat.ahmad@gmail.com}{s.saadat.ahmad@gmail.com}
+   \ \ $|$\ \ +91 74510 77808 \ \ $|$\ \ Aligarh, India}
+\end{center}
+
+% ── Experience ──────────────────────────────────────────────────────────
+\section*{Experience}
+\addcontentsline{toc}{section}{Experience}
+
+\entry{Software Engineer Intern}{Recklabs Services}{Remote}{May 2026 -- Present}
+\begin{itemize}
+  \item Building and shipping an MVP-stage, privacy-first desktop AI product --- a Model Context Protocol (MCP) platform that wires custom connectors into Claude Desktop --- owning the web, licensing, and distribution layers end to end.
+  \item Built the marketing site and product portal as a server-rendered FastAPI + Jinja2 app on PostgreSQL (SQLAlchemy, Alembic), with JWT/bcrypt auth and a tamper-proof, compiled entitlement gate for licensing.
+  \item Engineered on-demand installer builds: connectors selected at login are compiled per user into a custom Windows \texttt{.exe} via GitHub Actions runners (Inno Setup), with auth-gated delivery and automatic Claude Desktop wiring.
+  \item Hardened distribution by compiling Python connectors to native binaries (\texttt{.pyd}/\texttt{.exe}) with Nuitka for tamper resistance, deployed via Docker Compose on a VPS behind Nginx.
+\end{itemize}
+
+\entry{Software Developer Intern}{Telecrm}{Aligarh, India}{Aug 2025 -- May 2026}
+\begin{itemize}
+  \item Worked in an Agile team on 14-day sprints, collaborating daily with QA and engineering to prioritise and ship automation improvements on schedule.
+  \item Expanded automated E2E regression suites (Puppeteer, Jasmine, FFMPEG, Allure, AWS S3) and integrated them into the CI/CD pipeline.
+  \item Operated and monitored test pipelines end-to-end, triaging failures, root-causing flakiness, and ensuring reliable execution across every release cycle.
+  \item Upgraded reporting by integrating test-case history into Allure Reports, giving the team clear visibility into release-level trends and failure patterns.
+\end{itemize}
+
+\entry{Satellite Payload Designer}{SS AMU SAT}{Aligarh, India}{Jul 2024 -- Jan 2026}
+\begin{itemize}
+  \item Collaborated in an interdisciplinary team of 30+ members including faculty, industry engineers, and ISRO scientists to develop a university nanosatellite.
+  \item Implemented and tested the imaging payload on a Raspberry Pi Compute Module 4, handling driver integration, image-capture pipeline, and on-board storage.
+  \item Configured CAN bus communication between the payload and multiple satellite subsystems and sensors.
+  \item Designed geolocation-driven automation to trigger satellite image acquisition based on orbital position.
+\end{itemize}
+
+\entry{Backend Web Developer Intern}{Orbitalink Pvt. Ltd.}{Aligarh, India}{May 2025 -- Jul 2025}
+\begin{itemize}
+  \item Designed and deployed a CI/CD pipeline using GitHub Actions with separate workflows for production and development environments.
+  \item Built internal REST APIs covering user authentication, session management, role-based admin privileges, and third-party service integrations.
+  \item Led the migration of the system from Flask + SQLite3 to Next.js + PostgreSQL, improving scalability and query performance.
+\end{itemize}
+
+% ── Projects ────────────────────────────────────────────────────────────
+\section*{Projects}
+
+\textbf{nCrypt} \ \href{https://saadatahmad.pythonanywhere.com}{\small View}
+\begin{itemize}
+  \item Flask-based web platform for creating, sharing, and applying custom encryption schemes; deployed on PythonAnywhere with end-to-end HTTPS.
+  \item Engineered RESTful APIs, SQLite data models, and Werkzeug-powered password hashing for secure user and scheme management.
+\end{itemize}
+\vspace{3pt}
+
+\textbf{JannSeva} \ \href{https://github.com/Saadat-Ahmad/JannSeva}{\small View}
+\begin{itemize}
+  \item AI-driven healthcare app designed for rural India, supporting 120+ regional dialects via integrated NLP.
+  \item Incorporated weather and air-quality APIs to generate hyper-local, location-specific health insights.
+  \item Implemented OTP-based authentication via Twilio, prioritising accessibility for low-tech and first-time smartphone users.
+\end{itemize}
+
+% ── Skills ──────────────────────────────────────────────────────────────
+\section*{Skills}
+\textbf{Languages:} Python, C, C++, JavaScript, TypeScript\\
+\textbf{Frontend:} React, React Native, Next.js, Angular, HTML/CSS, Tailwind CSS\\
+\textbf{Backend:} FastAPI, Flask, Django, Node.js, REST APIs\\
+\textbf{Databases:} PostgreSQL, SQLite, MySQL, MongoDB\\
+\textbf{DevOps:} Docker, Docker Compose, GitHub Actions, Bitbucket Pipelines, Nginx, VPS Deployments, CI/CD
+
+% ── Education ───────────────────────────────────────────────────────────
+\section*{Education}
+\textbf{Bachelor of Technology in Computer Engineering}\hfill\textit{2027}\\
+Z.H. College of Engineering and Technology, Aligarh Muslim University
+
+\end{document}
