@@ -15,7 +15,7 @@ export default function PixelMac({
       stroke="currentColor"
       strokeWidth={1.4}
       strokeLinejoin="round"
-      className={className}
+      className={`pixelmac ${className}`}
       aria-hidden
       shapeRendering="geometricPrecision"
     >
@@ -24,8 +24,8 @@ export default function PixelMac({
       {/* screen */}
       <rect x="4.2" y="3.6" width="11.6" height="9" />
       {/* eyes */}
-      <circle cx="7.6" cy="7" r="0.85" fill="currentColor" stroke="none" />
-      <circle cx="12.4" cy="7" r="0.85" fill="currentColor" stroke="none" />
+      <circle className="pm-eye" cx="7.6" cy="7" r="0.85" fill="currentColor" stroke="none" />
+      <circle className="pm-eye" cx="12.4" cy="7" r="0.85" fill="currentColor" stroke="none" />
       {/* smile */}
       <path d="M7.3 9.1 Q10 11.4 12.7 9.1" />
       {/* disk slot */}

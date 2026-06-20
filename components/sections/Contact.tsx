@@ -19,16 +19,13 @@ export default function Contact() {
           className="pointer-events-none absolute -right-8 -top-8 z-0 hidden text-paper/10 sm:block"
         />
         <Reveal className="relative z-10">
-          {/* <SectionLabel index="05" className="text-paper">
-            Contact
-          </SectionLabel> */}
-          <h2 className="mt-6 max-w-3xl font-serif text-5xl font-light leading-[0.95] sm:text-6xl lg:text-7xl">
+          <h2 className="mt-6 max-w-3xl text-balance font-serif text-5xl font-light leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
             Let&apos;s{" "}
             <span className="italic text-paper">build</span> together.
           </h2>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-paper/85">
             Open to internships, full-time roles, and the occasional weird
-            side project. Email reaches me the fastest. : &#10223;
+            side project. Email reaches me the fastest.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -39,7 +36,7 @@ export default function Contact() {
             <a
               href={profile.resume}
               download
-              className="inline-flex items-center gap-2 border border-paper px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-paper transition-colors hover:bg-paper hover:text-ink"
+              className="press inline-flex items-center gap-2 border border-paper px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-paper transition hover:bg-paper hover:text-ink"
             >
               <ArrowDownToLine className="h-3.5 w-3.5" /> Résumé
             </a>
@@ -75,10 +72,10 @@ export default function Contact() {
       {/* footer bar */}
       <footer className="border-t border-paper/30 px-6 py-6 sm:px-10 lg:px-16">
         <div className="flex flex-col items-center justify-between gap-3 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-paper/70 sm:flex-row">
-          <span className="inline-flex items-center gap-1.5 text-m">
-              <PixelMac size={25} /> {profile.name} · {year} 
-            </span>
-          <span className="hidden sm:inline">React · Next.js ·  Tailwind</span>
+          <span className="inline-flex items-center gap-1.5">
+            <PixelMac size={25} /> {profile.name} · {year}
+          </span>
+          <span className="hidden sm:inline">React · Next.js · Tailwind</span>
           <Link href="#top" className="inline-flex items-center gap-1.5 hover:text-paper">
             Back to top <ArrowUp className="h-3.5 w-3.5" />
           </Link>

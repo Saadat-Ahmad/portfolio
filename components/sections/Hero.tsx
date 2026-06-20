@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import MacWindow from "@/components/ui/MacWindow";
 import Reveal from "@/components/site/Reveal";
 import CopyEmail from "@/components/site/CopyEmail";
-import GlitchPortrait from "@/components/site/GlitchPortrait";
+import Portrait from "@/components/site/Portrait";
 import PixelMac from "@/components/site/PixelMac";
 import { SectionLabel, AsciiArt } from "@/components/site/bits";
 import { profile } from "@/lib/content";
@@ -59,7 +59,7 @@ export default function Hero() {
         {/* ── left ─────────────────────────────────────────────── */}
         <div className="min-w-0">
           <h1 className="font-serif font-light leading-[0.85] tracking-tight">
-            <span className="flex flex-wrap items-baseline gap-x-[0.2em] text-7xl sm:text-8xl lg:text-[7.5rem] xl:text-[9rem]">
+            <span className="flex flex-wrap items-baseline gap-x-[0.2em] text-[clamp(4.5rem,2rem+9vw,9rem)]">
               {wordmark}
             </span>
           </h1>
@@ -77,9 +77,10 @@ export default function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               href="#work"
-              className="inline-flex items-center gap-2 border border-ink bg-ink px-5 py-2.5 font-mono text-xs uppercase tracking-[0.12em] text-paper transition-colors hover:bg-orange"
+              className="press group inline-flex items-center gap-2 border border-ink bg-ink px-5 py-2.5 font-mono text-xs uppercase tracking-[0.12em] text-paper transition hover:bg-orange"
             >
-              View work <ArrowRight className="h-4 w-4" />
+              View work{" "}
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Link>
             <CopyEmail />
           </div>
@@ -112,7 +113,7 @@ export default function Hero() {
             className="relative mx-auto max-w-sm lg:ml-auto lg:mr-0"
             bodyClassName="p-0"
           >
-            <GlitchPortrait />
+            <Portrait />
             <div className="flex items-center justify-between border-t border-ink bg-paper-2 px-3 py-2 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-ink-soft">
               <span>{profile.name}</span>
               <span className="text-orange">{profile.location}</span>

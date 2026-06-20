@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Fraunces, Space_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/site/Cursor";
+import CursorTrail from "@/components/site/CursorTrail";
 import ScrollProgress from "@/components/site/ScrollProgress";
+import Easters from "@/components/site/Easters";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -27,10 +29,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://saadatahmad.com"),
   title: "Syed Saadat Ahmad · Full-Stack Engineer",
   description:
-    "Syed Saadat Ahmad is a full-stack and engineer in New Delhi, India, building desktop AI-Native application at Recklabs, has worked on satellite imaging payloads, FastAPI services, and CI/CD infrastructure.",
+    "Syed Saadat Ahmad is a full-stack engineer in New Delhi, India, building a privacy-first desktop AI product at Recklabs, with past work on satellite imaging payloads, FastAPI services, and CI/CD infrastructure.",
   keywords: [
     "Syed Saadat Ahmad",
-    "Full-Stack Developer",
+    "Full-Stack Engineer",
     "Next.js",
     "FastAPI",
     "Satellite Payload",
@@ -53,11 +55,19 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${fraunces.variable} ${spaceMono.variable} ${inter.variable}`}
+      suppressHydrationWarning
     >
       <body className="antialiased">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
         <div className="grain" aria-hidden />
         <ScrollProgress />
+        <CursorTrail />
         <Cursor />
+        <Easters />
         {children}
       </body>
     </html>

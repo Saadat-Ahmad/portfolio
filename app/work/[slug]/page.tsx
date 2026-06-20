@@ -2,9 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowUpRight, ArrowDownToLine, Check } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  ArrowDownToLine,
+  Check,
+} from "lucide-react";
 import MacWindow from "@/components/ui/MacWindow";
 import PixelMac from "@/components/site/PixelMac";
+import CopyEmail from "@/components/site/CopyEmail";
 import { projects, profile } from "@/lib/content";
 
 export function generateStaticParams() {
@@ -38,6 +45,7 @@ export default async function ProjectPage({
   const tone = idx % 2 === 0 ? "sage" : "brick";
   const panelBg = tone === "sage" ? "bg-sage" : "bg-brick";
   const external = p.links.filter((l) => l.label !== "About");
+  const next = projects[(idx + 1) % projects.length];
 
   return (
     <main className="min-h-screen pb-0">
@@ -54,12 +62,12 @@ export default async function ProjectPage({
             href="/#work"
             className="inline-flex items-center gap-1.5 text-paper hover:text-sage"
           >
-            <ArrowLeft className="h-3.5 w-3.5" /> All work
+            <ArrowLeft className="h-3.5 w-3.5" /> All projects
           </Link>
           <a
             href={profile.resume}
             download
-            className="hidden items-center gap-1.5 border text-paper border-ink px-3 py-1.5 hover:bg-sage text-ink sm:inline-flex"
+            className="hidden items-center gap-1.5 border border-ink px-3 py-1.5 text-paper hover:bg-sage hover:text-ink sm:inline-flex"
           >
             <ArrowDownToLine className="h-3.5 w-3.5" /> Résumé
           </a>
@@ -74,13 +82,13 @@ export default async function ProjectPage({
           </Link>{" "}
           <span className="text-line">/</span>{" "}
           <Link href="/#work" className="hover:text-orange">
-            work
+            projects
           </Link>{" "}
           <span className="text-line">/</span>{" "}
           <span className="text-orange">{p.slug}</span>
         </nav>
 
-        <h1 className="mt-6 font-serif text-5xl font-light leading-none sm:text-7xl">
+        <h1 className="mt-6 text-balance font-serif text-5xl font-light leading-none tracking-tight sm:text-7xl">
           {p.title}
         </h1>
 
@@ -122,7 +130,10 @@ export default async function ProjectPage({
       </article>
 
       {/* colored highlight panel */}
-      <section className={`${panelBg} border-y border-ink text-ink`}>
+      <section
+        {...(tone === "brick" ? { "data-invert": "" } : {})}
+        className={`${panelBg} border-y border-ink text-ink`}
+      >
         <div className="mx-auto max-w-5xl px-6 py-16 sm:px-8 lg:py-20">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-ink/70">
             [ highlights ]
@@ -131,7 +142,9 @@ export default async function ProjectPage({
           <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
             {p.highlights.map((h) => (
               <div key={h.n} className="border-t border-ink/30 pt-4">
-                <span className="font-serif text-3xl text-ink/60">{h.n}</span>
+                <span className="font-serif text-3xl text-ink/60 tabular-nums">
+                  {h.n}
+                </span>
                 <h3 className="mt-2 font-serif text-xl">{h.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink/80">
                   {h.body}
@@ -162,7 +175,7 @@ export default async function ProjectPage({
                   href={l.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border border-paper bg-paper px-5 py-2.5 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-transparent hover:text-paper"
+                  className="press on-light inline-flex items-center gap-2 border border-paper bg-paper px-5 py-2.5 font-mono text-xs uppercase tracking-[0.12em] text-ink transition hover:bg-transparent hover:text-paper"
                 >
                   {l.label} <ArrowUpRight className="h-4 w-4" />
                 </a>
@@ -172,15 +185,56 @@ export default async function ProjectPage({
         </div>
       </section>
 
-      {/* footer back */}
-      <div className="mx-auto max-w-5xl px-6 py-12 sm:px-8">
-        <Link
-          href="/#work"
-          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-ink-soft hover:text-orange"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to all work
-        </Link>
-      </div>
+      {/* end: next project + contact */}
+      <section className="border-t border-ink">
+        <div className="mx-auto grid max-w-5xl px-6 sm:grid-cols-2 sm:px-8">
+          <Link
+            href={`/work/${next.slug}`}
+            className="group flex flex-col gap-4 py-12 sm:pr-10"
+          >
+            <span className="font-mono text-xs uppercase tracking-[0.16em] text-ink-soft">
+              Next project
+            </span>
+            <span className="flex items-center gap-3 font-serif text-3xl leading-none transition-colors group-hover:text-orange sm:text-4xl">
+              {next.title}
+              <ArrowRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
+            </span>
+            <span className="text-sm leading-relaxed text-ink/70">
+              {next.tagline}
+            </span>
+          </Link>
+
+          <div className="flex flex-col gap-4 border-t border-line py-12 sm:border-l sm:border-t-0 sm:pl-10">
+            <span className="font-mono text-xs uppercase tracking-[0.16em] text-ink-soft">
+              Let&apos;s work together
+            </span>
+            <p className="font-serif text-2xl leading-tight sm:text-3xl">
+              Have something to build?
+            </p>
+            <div className="mt-1 flex flex-wrap gap-3">
+              <CopyEmail />
+              <a
+                href={profile.resume}
+                download
+                className="press inline-flex items-center gap-2 border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition hover:bg-ink hover:text-paper"
+              >
+                <ArrowDownToLine className="h-3.5 w-3.5" /> Résumé
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-ink">
+          <div className="mx-auto max-w-5xl px-6 py-5 sm:px-8">
+            <Link
+              href="/#work"
+              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-ink-soft transition-colors hover:text-orange"
+            >
+              <ArrowLeft className="h-4 w-4" /> Back to all projects
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

@@ -24,7 +24,7 @@ function LogoMark() {
     <Link
       href="#top"
       aria-label={profile.shortName}
-      className="group grid h-9 w-9 place-items-center border border-ink bg-sage text-ink transition-colors hover:bg-orange hover:text-paper"
+      className="on-light group grid h-9 w-9 place-items-center border border-ink bg-sage text-ink transition-colors hover:bg-orange hover:text-paper"
     >
       <PixelMac size={20} />
     </Link>
@@ -34,12 +34,12 @@ function LogoMark() {
 function Wordmark() {
   return (
     <Link href="#top" className="group flex items-center gap-2.5">
-      <span className="grid h-9 w-9 place-items-center border border-ink bg-sage text-ink transition-colors group-hover:bg-orange group-hover:text-paper">
+      <span className="on-light grid h-9 w-9 place-items-center border border-ink bg-sage text-ink transition-colors group-hover:bg-orange group-hover:text-paper">
         <PixelMac size={20} />
       </span>
       <span className="leading-tight">
         <span className="block font-serif text-base">{profile.shortName}</span>
-        <span className="block font-mono text-[0.62rem] uppercase tracking-[0.18em] text-base">
+        <span className="block font-mono text-[0.62rem] uppercase tracking-[0.18em] text-ink-soft">
           {profile.role}
         </span>
       </span>
@@ -87,14 +87,14 @@ function NavList({ active, onNavigate }: { active: string; onNavigate?: () => vo
               className={cn(
                 "group flex items-center gap-3 border border-transparent px-2 py-1.5 font-mono text-sm transition-colors",
                 isActive
-                  ? "border-ink bg-sage text-ink"
-                  : "text-ink hover:border-line hover:bg-sage"
+                  ? "on-light border-ink bg-sage text-ink"
+                  : "text-ink hover:border-line hover:bg-black/10"
               )}
             >
               <span
                 className={cn(
                   "text-xs",
-                  isActive ? "text-orange" : "text-page group-hover:text-orange"
+                  isActive ? "text-orange" : "text-ink-soft group-hover:text-orange"
                 )}
               >
                 {String(i + 1).padStart(2, "0")}
@@ -124,12 +124,12 @@ function NavRail({ active }: { active: string }) {
               className={cn(
                 "group/navitem relative grid h-9 w-9 place-items-center border font-mono text-xs transition-colors",
                 isActive
-                  ? "border-ink bg-sage text-orange"
-                  : "border-transparent text-page hover:border-line hover:bg-sage hover:text-orange"
+                  ? "on-light border-ink bg-sage text-orange"
+                  : "border-transparent text-ink-soft hover:border-line hover:bg-black/10 hover:text-orange"
               )}
             >
               {String(i + 1).padStart(2, "0")}
-              <span className="pointer-events-none absolute left-full ml-2 hidden whitespace-nowrap border border-ink bg-sage px-2 py-1 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink shadow-[3px_3px_0_0_var(--color-ink)] group-hover/navitem:block">
+              <span className="on-light pointer-events-none absolute left-full ml-2 hidden whitespace-nowrap border border-ink bg-sage px-2 py-1 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink shadow-[3px_3px_0_0_var(--color-ink)] group-hover/navitem:block">
                 {item.label}
               </span>
             </Link>
@@ -159,7 +159,7 @@ function Footer() {
       <a
         href={profile.resume}
         download
-        className="inline-flex w-full items-center justify-center gap-2 border border-ink bg-sage px-3 py-2 font-mono text-xs uppercase tracking-[0.14em] transition-colors hover:bg-orange hover:text-paper"
+        className="on-light inline-flex w-full items-center justify-center gap-2 border border-ink bg-sage px-3 py-2 font-mono text-xs uppercase tracking-[0.14em] transition-colors hover:bg-orange hover:text-paper"
       >
         <ArrowDownToLine className="h-3.5 w-3.5" /> Résumé
       </a>
@@ -214,6 +214,7 @@ export default function Sidebar() {
     <>
       {/* Desktop sidebar (collapsible) */}
       <aside
+        data-rail
         className={cn(
           "fixed inset-y-0 left-0 z-40 hidden flex-col justify-between border-r border-ink bg-orange py-7 transition-[width] duration-300 ease-out lg:flex",
           collapsed ? "w-16 items-center px-2" : "w-64 px-5"
@@ -250,10 +251,10 @@ export default function Sidebar() {
             href={profile.resume}
             download
             aria-label="Résumé"
-            className="group/navitem relative grid h-9 w-9 place-items-center border border-ink bg-sage text-ink transition-colors hover:bg-orange hover:text-paper"
+            className="on-light group/navitem relative grid h-9 w-9 place-items-center border border-ink bg-sage text-ink transition-colors hover:bg-orange hover:text-paper"
           >
             <ArrowDownToLine className="h-4 w-4" />
-            <span className="pointer-events-none absolute left-full ml-2 hidden whitespace-nowrap border border-ink bg-sage px-2 py-1 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink shadow-[3px_3px_0_0_var(--color-ink)] group-hover/navitem:block">
+            <span className="on-light pointer-events-none absolute left-full ml-2 hidden whitespace-nowrap border border-ink bg-sage px-2 py-1 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-ink shadow-[3px_3px_0_0_var(--color-ink)] group-hover/navitem:block">
               Résumé
             </span>
           </a>

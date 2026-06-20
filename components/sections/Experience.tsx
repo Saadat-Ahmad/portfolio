@@ -5,20 +5,20 @@ export default function Experience() {
   return (
     <Disclosure
       id="experience"
-      index="02"
       name="Experience"
       title="Where I've shipped."
+      tintOnHover={false}
     >
       <div className="group/exp">
         {experiences.map((exp, i) => (
           <article
             key={exp.company}
-            className="group grid gap-5 border-t border-line border-orange py-9 transition-opacity duration-300 first:border-t-0 first:pt-0 group-hover/exp:opacity-40 hover:opacity-100! lg:grid-cols-[210px_1fr] lg:gap-12"
+            className="group grid gap-5 border-t border-line -mx-6 px-6 py-9 transition duration-300 first:border-t-0 group-hover/exp:opacity-70 hover:opacity-100! sm:-mx-10 sm:px-10 lg:-mx-16 lg:px-16 lg:grid-cols-[210px_1fr] lg:gap-12"
           >
             {/* meta column */}
             <div className="font-mono text-xs text-ink-soft">
               <div className="flex items-baseline gap-3">
-                <span className="font-serif text-4xl leading-none text-line transition-colors text-orange">
+                <span className="font-serif text-4xl leading-none text-orange tabular-nums">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 {exp.current && (
@@ -33,13 +33,13 @@ export default function Experience() {
 
             {/* body column */}
             <div>
-              <h3 className="font-serif text-2xl leading-tight sm:text-3xl">
+              <h3 className="text-balance font-serif text-2xl leading-tight sm:text-3xl">
                 {exp.role} <span className="text-ink-soft">/ {exp.company}</span>
               </h3>
-              <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/80">
+              <p className="mt-3 max-w-xl text-base leading-relaxed text-ink/80">
                 {exp.summary}
               </p>
-              <ul className="mt-4 max-w-2xl space-y-2">
+              <ul className="mt-4 max-w-xl space-y-2">
                 {exp.bullets.map((b, bi) => (
                   <li
                     key={bi}
@@ -54,7 +54,7 @@ export default function Experience() {
                 {exp.stack.map((s) => (
                   <span
                     key={s}
-                    className="border border-line border-orange px-2 py-0.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-orange"
+                    className="border border-orange px-2 py-0.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-orange"
                   >
                     {s}
                   </span>
@@ -65,7 +65,7 @@ export default function Experience() {
         ))}
 
         {/* Education: final row on the timeline */}
-        <article className="group grid gap-5 border-t border-line py-9 transition-opacity duration-300 group-hover/exp:opacity-40 hover:opacity-100! lg:grid-cols-[210px_1fr] lg:gap-12">
+        <article className="group grid gap-5 border-t border-line -mx-6 px-6 py-9 transition duration-300 group-hover/exp:opacity-70 hover:bg-sage hover:opacity-100! sm:-mx-10 sm:px-10 lg:-mx-16 lg:px-16 lg:grid-cols-[210px_1fr] lg:gap-12">
           <div className="font-mono text-xs text-ink-soft">
             <span className="font-serif text-4xl leading-none text-line transition-colors group-hover:text-orange">
               ★

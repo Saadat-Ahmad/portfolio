@@ -3,11 +3,12 @@ import Link from "next/link";
 import { ArrowUpRight, Github } from "lucide-react";
 import MacWindow from "@/components/ui/MacWindow";
 import Disclosure from "@/components/site/Disclosure";
+import Reveal from "@/components/site/Reveal";
 import { projects } from "@/lib/content";
 
 export default function Work() {
   return (
-    <Disclosure id="work" index="03" name="Work" title="Things I've built.">
+    <Disclosure id="work" name="Projects" title="Things I've built." divider="stripe">
       <div className="mb-8 flex justify-end">
         <a
           href="https://github.com/Saadat-Ahmad"
@@ -20,11 +21,11 @@ export default function Work() {
       </div>
 
       <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p) => {
+        {projects.map((p, i) => {
           const external = p.links.find((l) => l.label !== "About");
           return (
+            <Reveal key={p.slug} delay={i * 80} className="h-full">
             <MacWindow
-              key={p.slug}
               title={p.window}
               tone="inset"
               bodyClassName="p-0"
@@ -48,7 +49,9 @@ export default function Work() {
 
               <div className="flex flex-1 flex-col p-4">
                 <div className="flex items-baseline justify-between gap-2">
-                  <h3 className="font-serif text-2xl leading-none">{p.title}</h3>
+                  <h3 className="text-balance font-serif text-2xl leading-none">
+                    {p.title}
+                  </h3>
                   <span className="font-mono text-[0.65rem] text-ink-soft">
                     {p.year}
                   </span>
@@ -88,6 +91,7 @@ export default function Work() {
                 </div>
               </div>
             </MacWindow>
+            </Reveal>
           );
         })}
       </div>

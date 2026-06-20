@@ -23,7 +23,7 @@ export const nav = [
   { label: "Home", href: "#top", id: "top" },
   { label: "About", href: "#about", id: "about" },
   { label: "Experience", href: "#experience", id: "experience" },
-  { label: "Work", href: "#work", id: "work" },
+  { label: "Projects", href: "#work", id: "work" },
   { label: "Skills", href: "#skills", id: "skills" },
   { label: "Contact", href: "#contact", id: "contact" },
 ] as const;
@@ -262,10 +262,3 @@ export const education = {
   university: "Aligarh Muslim University",
   period: "Expected 2027",
 } as const;
-
-/* Hero stats ledger. Counts derive from the arrays above so they never drift. */
-export const stats = [
-  { value: String(experiences.length).padStart(2, "0"), label: "Roles" },
-  { value: String(projects.length).padStart(2, "0"), label: "Projects" },
-  { value: "2027", label: "Grad. year" },
-] as const;

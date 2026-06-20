@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import MacWindow from "@/components/ui/MacWindow";
 import { AsciiArt } from "@/components/site/bits";
+import { StripeArc } from "@/components/site/stripes";
 import { SAD_MAC } from "@/lib/ascii";
 
 export const metadata = {
@@ -10,8 +11,12 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <main className="grid min-h-screen place-items-center px-6 py-16">
-      <div className="w-full max-w-md text-center">
+    <main className="relative grid min-h-screen place-items-center overflow-hidden px-6 py-16">
+      <StripeArc
+        corner="bl"
+        className="pointer-events-none absolute -bottom-24 -left-20 z-0 hidden h-[30rem] w-[30rem] sm:block"
+      />
+      <div className="relative z-10 w-full max-w-md text-center">
         <MacWindow title="~/404" className="text-left">
           <AsciiArt
             art={SAD_MAC}

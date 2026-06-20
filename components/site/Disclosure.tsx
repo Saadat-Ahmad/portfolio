@@ -3,20 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import PixelMac from "@/components/site/PixelMac";
+import { StripeRule } from "@/components/site/stripes";
 
 export default function Disclosure({
   id,
-  index,
   name,
   title,
-  defaultOpen = false,
+  defaultOpen = true,
+  tintOnHover = true,
+  divider = "line",
   children,
 }: {
   id: string;
-  index: string;
   name: string;
   title: string;
   defaultOpen?: boolean;
+  tintOnHover?: boolean;
+  divider?: "line" | "stripe";
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(defaultOpen);
@@ -66,10 +69,12 @@ export default function Disclosure({
         window.dispatchEvent(new CustomEvent("section:hover", { detail: null }))
       }
       className={cn(
-        "scroll-mt-24 border-t border-line transition-colors duration-300",
-        isHovered && "bg-sage"
+        "scroll-mt-24 transition-colors duration-300",
+        divider === "line" && "border-t border-line",
+        tintOnHover && isHovered && "bg-sage"
       )}
     >
+      {divider === "stripe" && <StripeRule />}
       <div className="px-6 sm:px-10 lg:px-16">
         <button
           type="button"
@@ -82,20 +87,17 @@ export default function Disclosure({
             <span className="eyebrow flex items-center gap-1.5">
               <PixelMac size={18} className="text-orange mr-4" />
               <span className="text-orange">[</span>
-              <span className="text-orange">{index}</span>
-              <span aria-hidden>·</span>
               <span>{name}</span>
               <span className="text-orange">]</span>
             </span>
-            <span className="mt-3 block font-serif text-3xl font-light leading-tight transition-colors group-hover:text-orange sm:text-4xl">
+            <span className="mt-3 block text-balance font-serif text-3xl font-light leading-tight transition-colors group-hover:text-orange sm:text-4xl">
               {title}
             </span>
           </span>
           <span
             aria-hidden
             className={cn(
-              "shrink-0 font-mono text-xl leading-none transition-transform duration-300 group-hover:scale-110",
-              "text-orange"
+              "shrink-0 font-mono text-xl leading-none text-orange transition-transform duration-300 group-hover:scale-110 group-active:scale-90"
             )}
           >
             {open ? "[ - ]" : "[ + ]"}
@@ -112,7 +114,7 @@ export default function Disclosure({
           <div className="overflow-hidden">
             <div
               className={cn(
-                "pb-16 pr-1 transition-opacity duration-500 lg:pb-24",
+                "pb-16 transition-opacity duration-500 lg:pb-24",
                 open ? "opacity-100" : "opacity-0"
               )}
             >

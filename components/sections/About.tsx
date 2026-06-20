@@ -14,10 +14,10 @@ const facts: [string, string][] = [
 
 export default function About() {
   return (
-    <Disclosure id="about" index="01" name="About" title="Engineer, end to end.">
+    <Disclosure id="about" name="About" title="Engineer, end to end." divider="stripe">
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div>
-          <h3 className="max-w-xl font-serif text-2xl font-light leading-snug sm:text-3xl">
+          <h3 className="max-w-xl text-balance font-serif text-2xl font-light leading-snug sm:text-3xl">
             I build the product, the API behind it, and the{" "}
             <span className="italic text-orange">boxes it runs on</span>.
           </h3>
