@@ -2,7 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
-/** Thin top bar tracking page scroll progress. */
+// Same brand stripe palette as the cursor trail (top → bottom).
+const COLORS = ["#c12d0d", "#9e1d03", "#221c15"]; //orange, brick, ink
+
+/** Top scroll-progress bar — a stripe of brand colours that fills with scroll. */
 export default function ScrollProgress() {
   const barRef = useRef<HTMLDivElement>(null);
 
@@ -32,13 +35,17 @@ export default function ScrollProgress() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-x-0 top-0 z-[65] h-[3px]"
+      className="pointer-events-none fixed inset-x-0 top-0 z-[65] h-[12px]"
     >
       <div
         ref={barRef}
-        className="h-full origin-left bg-orange"
+        className="flex h-full w-full origin-left flex-col"
         style={{ transform: "scaleX(0)" }}
-      />
+      >
+        {COLORS.map((c, i) => (
+          <span key={i} className="block w-full flex-1" style={{ backgroundColor: c }} />
+        ))}
+      </div>
     </div>
   );
 }

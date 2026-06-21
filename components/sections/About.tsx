@@ -14,7 +14,7 @@ const facts: [string, string][] = [
 
 export default function About() {
   return (
-    <Disclosure id="about" name="About" title="Engineer, end to end." divider="stripe">
+    <Disclosure id="about" name="About" title="Engineer, end to end.">
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div>
           <h3 className="max-w-xl text-balance font-serif text-2xl font-light leading-snug sm:text-3xl">

@@ -9,7 +9,7 @@ export default function Disclosure({
   id,
   name,
   title,
-  defaultOpen = true,
+  defaultOpen = false,
   tintOnHover = true,
   divider = "line",
   children,
@@ -29,6 +29,12 @@ export default function Disclosure({
   const ref = useRef<HTMLElement>(null);
 
   const isHovered = hoveredId === id;
+
+  // Experience runs its content edge-to-edge (its rows manage their own
+  // padding for the full-bleed hover); every other section keeps the standard
+  // inset. The header stays inset in all cases so the titles stay aligned.
+  const contentPad =
+    id === "experience" ? "px-0" : "px-6 sm:px-10 lg:px-16";
 
   useEffect(() => {
     const reveal = () => {
@@ -75,7 +81,9 @@ export default function Disclosure({
       )}
     >
       {divider === "stripe" && <StripeRule />}
-      <div className="px-6 sm:px-10 lg:px-16">
+
+      {/* header — always inset so section titles align across the page */}
+      <div className="px-6 sm:px-10 lg:px-16 hover:bg-sage">
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
@@ -96,30 +104,30 @@ export default function Disclosure({
           </span>
           <span
             aria-hidden
-            className={cn(
-              "shrink-0 font-mono text-xl leading-none text-orange transition-transform duration-300 group-hover:scale-110 group-active:scale-90"
-            )}
+            className="shrink-0 font-mono text-xl leading-none text-orange transition-transform duration-300 group-hover:scale-110 group-active:scale-90"
           >
             {open ? "[ - ]" : "[ + ]"}
           </span>
         </button>
+      </div>
 
-        <div
-          id={`${id}-panel`}
-          className={cn(
-            "grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-            open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-          )}
-        >
-          <div className="overflow-hidden">
-            <div
-              className={cn(
-                "pb-16 transition-opacity duration-500 lg:pb-24",
-                open ? "opacity-100" : "opacity-0"
-              )}
-            >
-              {children}
-            </div>
+      {/* content — px-0 for experience (full-bleed rows), inset otherwise */}
+      <div
+        id={`${id}-panel`}
+        className={cn(
+          "grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        )}
+      >
+        <div className="overflow-hidden">
+          <div
+            className={cn(
+              contentPad,
+              "pb-16 transition-opacity duration-500 lg:pb-24",
+              open ? "opacity-100" : "opacity-0"
+            )}
+          >
+            {children}
           </div>
         </div>
       </div>

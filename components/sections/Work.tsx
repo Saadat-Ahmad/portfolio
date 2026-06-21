@@ -8,7 +8,7 @@ import { projects } from "@/lib/content";
 
 export default function Work() {
   return (
-    <Disclosure id="work" name="Projects" title="Things I've built." divider="stripe">
+    <Disclosure id="work" name="Projects" title="Things I've built.">
       <div className="mb-8 flex justify-end">
         <a
           href="https://github.com/Saadat-Ahmad"

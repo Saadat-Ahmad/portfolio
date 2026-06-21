@@ -90,8 +90,9 @@ body {
   background: var(--color-paper-deep);
 }
 ::-webkit-scrollbar-thumb {
+  
   background-color: var(--color-orange);
-  border: 2px solid var(--color-paper-deep);
+  border: 2px solid var(--color-brick);
 }
 
 /* ── film grain overlay ───────────────────────────────────────────────── */
@@ -317,11 +318,12 @@ body {
   .term-cursor { animation: none; }
 }
 
-/* ── delight: Happy-Mac blinks on hover ───────────────────────────────── */
+/* ── delight: Happy-Mac eyes blink every 3s (and an extra blink on hover) ─ */
 
 .pm-eye {
   transform-box: fill-box;
   transform-origin: center;
+  animation: pm-blink-loop 3s ease-in-out infinite;
 }
 .pixelmac:hover .pm-eye {
   animation: pm-blink 0.45s ease-in-out;
@@ -329,6 +331,11 @@ body {
 @keyframes pm-blink {
   0%, 100% { transform: scaleY(1); }
   45%, 55% { transform: scaleY(0.1); }
+}
+/* eyes open most of the cycle, then a quick blink once per 3s */
+@keyframes pm-blink-loop {
+  0%, 91%, 100% { transform: scaleY(1); }
+  94%, 96.5% { transform: scaleY(0.1); }
 }
 
 /* ── delight: Konami-code CRT sweep ───────────────────────────────────── */
@@ -356,6 +363,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .pm-eye,
   .pixelmac:hover .pm-eye { animation: none; }
   .crt-sweep {
     animation: crt-fade 0.6s ease-out forwards;

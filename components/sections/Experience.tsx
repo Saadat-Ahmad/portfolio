@@ -13,7 +13,7 @@ export default function Experience() {
         {experiences.map((exp, i) => (
           <article
             key={exp.company}
-            className="group grid gap-5 border-t border-line -mx-6 px-6 py-9 transition duration-300 first:border-t-0 group-hover/exp:opacity-70 hover:opacity-100! sm:-mx-10 sm:px-10 lg:-mx-16 lg:px-16 lg:grid-cols-[210px_1fr] lg:gap-12"
+            className="group grid gap-5 border-t border-line px-6 py-9 transition duration-300 first:border-t-0 group-hover/exp:opacity-70 hover:bg-sage hover:opacity-100! sm:px-10 lg:px-16 lg:grid-cols-[210px_1fr] lg:gap-12"
           >
             {/* meta column */}
             <div className="font-mono text-xs text-ink-soft">
@@ -65,7 +65,7 @@ export default function Experience() {
         ))}
 
         {/* Education: final row on the timeline */}
-        <article className="group grid gap-5 border-t border-line -mx-6 px-6 py-9 transition duration-300 group-hover/exp:opacity-70 hover:bg-sage hover:opacity-100! sm:-mx-10 sm:px-10 lg:-mx-16 lg:px-16 lg:grid-cols-[210px_1fr] lg:gap-12">
+        <article className="group grid gap-5 border-t border-line px-6 py-9 transition duration-300 group-hover/exp:opacity-70 hover:bg-sage hover:opacity-100! sm:px-10 lg:px-16 lg:grid-cols-[210px_1fr] lg:gap-12">
           <div className="font-mono text-xs text-ink-soft">
             <span className="font-serif text-4xl leading-none text-line transition-colors group-hover:text-orange">
               ★

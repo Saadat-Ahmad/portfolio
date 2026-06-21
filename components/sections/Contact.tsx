@@ -16,7 +16,7 @@ export default function Contact() {
       <div className="relative overflow-hidden px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
         <PixelMac
           size={220}
-          className="pointer-events-none absolute -right-8 -top-8 z-0 hidden text-paper/10 sm:block"
+          className="pointer-events-none absolute right-8 top-8 z-0 hidden text-paper/10 sm:block"
         />
         <Reveal className="relative z-10">
           <h2 className="mt-6 max-w-3xl text-balance font-serif text-5xl font-light leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">

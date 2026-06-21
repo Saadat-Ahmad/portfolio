@@ -5,7 +5,7 @@ import Reveal from "@/components/site/Reveal";
 import CopyEmail from "@/components/site/CopyEmail";
 import Portrait from "@/components/site/Portrait";
 import PixelMac from "@/components/site/PixelMac";
-import { SectionLabel, AsciiArt } from "@/components/site/bits";
+import { SectionLabel, WinkingMac } from "@/components/site/bits";
 import { profile } from "@/lib/content";
 
 const WORDMARK = "it's saadat";
@@ -105,7 +105,7 @@ export default function Hero() {
 
         {/* ── right ────────────────────────────────────────────── */}
         <Reveal delay={120} className="relative">
-          <AsciiArt className="pointer-events-none absolute -top-14 right-0 hidden rotate-3 text-[10px] leading-[1.04] text-orange/75 lg:block" />
+          <WinkingMac className="pointer-events-none absolute -top-14 right-0 hidden rotate-3 text-[10px] leading-[1.04] text-orange/75 lg:block" />
 
           <MacWindow
             title="~/saadat/portrait.jpg"

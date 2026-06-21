@@ -1,5 +1,8 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { HAPPY_MAC } from "@/lib/ascii";
+import { HAPPY_MAC, WINKING_MAC } from "@/lib/ascii";
 
 /** Monospace eyebrow, e.g. [ 01 · EXPERIENCE ] */
 export function SectionLabel({
@@ -41,4 +44,30 @@ export function AsciiArt({
       {art}
     </pre>
   );
+}
+
+/** Happy Mac that blinks (a quick wink) on an interval. Static under reduced motion. */
+export function WinkingMac({
+  className,
+  interval = 3000,
+}: {
+  className?: string;
+  interval?: number;
+}) {
+  const [winking, setWinking] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let off: ReturnType<typeof setTimeout>;
+    const blink = setInterval(() => {
+      setWinking(true);
+      off = setTimeout(() => setWinking(false), 200);
+    }, interval);
+    return () => {
+      clearInterval(blink);
+      clearTimeout(off);
+    };
+  }, [interval]);
+
+  return <AsciiArt art={winking ? WINKING_MAC : HAPPY_MAC} className={className} />;
 }
